@@ -109,3 +109,49 @@ html {
 .animate-rise {
   animation: rise 1s ease-out both;
 }
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  transition: all 0.3s ease;
+}
+
+section {
+  scroll-margin-top: 120px;
+}
+
+.card-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: radial-gradient(
+    circle at top left,
+    rgba(91, 92, 240, 0.16),
+    transparent 35%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-glow:hover::before {
+  opacity: 1;
+}
+
+.hero-card {
+  transition:
+    transform 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+.hero-card:hover {
+  transform: perspective(1200px) rotateX(4deg) rotateY(-4deg)
+    translateY(-10px);
+  box-shadow: 0 40px 80px rgba(91, 92, 240, 0.18);
+}
