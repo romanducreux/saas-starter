@@ -30,41 +30,38 @@ export default function Home() {
     <main className="min-h-screen overflow-hidden bg-[#F8F9FB] text-[#111827]">
       <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_50%_0%,rgba(91,92,240,0.20),transparent_35%)]" />
 
-        <nav className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-8 py-6">
-          <div className="flex items-center gap-3">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#E5E7EB] bg-white shadow-sm">
-              <Image
-                src="/kirevo-transparent.png"
-                alt="Kirevo"
-                width={55}
-                height={55}
-                priority
-                className="h-12 w-12 object-contain"
-              />
+        <nav className="fixed top-6 left-1/2 z-50 w-[92%] max-w-7xl -translate-x-1/2 rounded-3xl border border-white/30 bg-white/70 px-8 py-4 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.08)]">
+
+          <div className="flex items-center justify-between">
+
+            <div className="flex items-center gap-4">
+              <img src="/kirevo-transparent.png" alt="Kirevo" className="h-12 w-12" />
+
+              <h1 className="text-2xl font-bold text-slate-900">
+                Kirevo
+              </h1>
             </div>
 
-            <span className="text-xl font-semibold tracking-tight">Kirevo</span>
-          </div>
-
-          <div className="hidden items-center gap-8 text-sm font-medium text-[#6B7280] md:flex">
-            <a href="#fonctionnalites" className="hover:text-[#111827]">Fonctionnalités</a>
-            <a href="#comment-ca-marche" className="hover:text-[#111827]">Comment ça marche</a>
-            <a href="#cas-usage" className="hover:text-[#111827]">Cas d’usage</a>
-            <a href="/about" className="hover:text-[#111827]">À propos</a>
-            <a href="/tarifs" className="hover:text-[#111827]">Tarifs</a>
-            <a href="#faq" className="hover:text-[#111827]">FAQ</a>
-            <a href="#contact" className="hover:text-[#111827]">Contact</a>
-          </div>
+            <div className="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-600">
+              <a href="/fonctionnalites">Fonctionnalités</a>
+              <a href="/solutions">Solutions</a>
+              <a href="/cas-clients" className="transition hover:text-[#111827]">Cas clients</a>
+              <a href="/about">À propos</a>
+              <a href="/tarifs">Tarifs</a>
+            </div>
 
           <a
             href="/demo"
-            className="hidden rounded-full bg-gradient-to-r from-[#5B5CF0] to-[#7C7DFF] px-6 py-3 text-sm font-semibold text-white shadow-xl shadow-[#5B5CF0]/25 transition duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-[#5B5CF0]/40 md:block"
+            className="rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#7C3AED] px-7 py-4 font-semibold text-white shadow-xl transition hover:scale-105 whitespace-nowrap"
           >
             Demander une démo
           </a>
+
+          </div>
+
         </nav>
 
-      <section className="relative z-10 mx-auto flex max-w-7xl flex-col items-center px-8 pt-20 text-center">
+      <section className="relative z-10 mx-auto flex max-w-7xl flex-col items-center px-8 pt-40 text-center">
         <div className="mb-6 rounded-full border border-[#E5E7EB] bg-white/80 px-5 py-2 text-sm font-medium text-[#5B5CF0] shadow-sm backdrop-blur">
           ✦ Plateforme d’automatisation par IA
         </div>
@@ -394,9 +391,14 @@ export default function Home() {
           <a href="#cas-usage" className="hover:text-[#111827]">Cas d’usage</a>
           <a href="/about" className="hover:text-[#111827]">À propos</a>
           <a href="/tarifs" className="hover:text-[#111827]">Tarifs</a>
+          <a href="/comment-ca-marche" className="hover:text-[#111827]">Comment ça marche</a>
+          <a href="/solutions" className="hover:text-[#111827]">Solutions</a>
           <a href="/demo" className="hover:text-[#111827]">Démo</a>
           <a href="#faq" className="hover:text-[#111827]">FAQ</a>
-          <a href="mailto:roman.ducreux@gmail.com" className="hover:text-[#111827]">Contact</a>
+          <a href="/demo-interactive" className="hover:text-[#111827]">Démo interactive</a>
+          <a href="/contact" className="transition hover:text-[#111827]">Contact</a>
+          <a href="/mentions-legales" className="transition hover:text-[#111827]">Mentions légales</a>
+          <a href="/confidentialite" className="transition hover:text-[#111827]">Confidentialité</a>
         </div>
 
           <p className="text-sm text-[#9CA3AF] md:text-right">

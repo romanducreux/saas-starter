@@ -50,9 +50,9 @@ export default function DemoPage() {
             </h2>
 
             <form
-              action="https://formspree.io/f/xojoglpy"
+              action="/api/leads"
               method="POST"
-              className="mt-8 space-y-5"
+              className="mt-8 space-y-5"    
             >
               <input
                 name="nom"
@@ -94,7 +94,7 @@ export default function DemoPage() {
                 placeholder="Qu’aimeriez-vous automatiser ?"
               />
 
-              <button className="w-full rounded-2xl bg-gradient-to-r from-[#5B5CF0] to-[#7C7DFF] px-6 py-4 font-semibold text-white shadow-xl shadow-[#5B5CF0]/25 transition hover:scale-105">
+              <button type="submit" className="w-full rounded-2xl bg-gradient-to-r from-[#5B5CF0] to-[#7C7DFF] px-6 py-4 font-semibold text-white shadow-xl shadow-[#5B5CF0]/25 transition hover:scale-105">
                 Envoyer la demande
               </button>
 
