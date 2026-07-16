@@ -361,21 +361,23 @@ export default function Home() {
               {landingOffers.map((offer) => (
                 <article
                   key={offer.name}
-                  className={`relative flex flex-col rounded-[2.5rem] border p-8 transition duration-300 hover:-translate-y-2 hover:shadow-2xl ${
+                  className={`flex flex-col rounded-[2.5rem] border p-8 transition duration-300 hover:-translate-y-2 hover:shadow-2xl ${
                     offer.highlighted
                       ? "border-[#5B5CF0] bg-gradient-to-b from-[#F2F2FF] to-white shadow-[0_25px_70px_rgba(91,92,240,0.14)]"
                       : "border-[#E5E7EB] bg-white shadow-[0_15px_45px_rgba(17,24,39,0.06)]"
                   }`}
                 >
-                  {offer.highlighted && (
-                    <span className="absolute right-6 top-6 rounded-full bg-[#5B5CF0] px-4 py-2 text-xs font-semibold text-white">
-                      Offre recommandée
-                    </span>
-                  )}
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#5B5CF0]">
+                      {offer.name}
+                    </p>
 
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#5B5CF0]">
-                    {offer.name}
-                  </p>
+                      {offer.highlighted && (
+                      <span className="rounded-full bg-[#5B5CF0] px-4 py-2 text-xs font-semibold text-white">
+                        Offre recommandée
+                      </span>
+                    )}
+                  </div>
 
                   <p className="mt-7 text-5xl font-bold tracking-tight text-[#111827]">
                     {offer.price}
