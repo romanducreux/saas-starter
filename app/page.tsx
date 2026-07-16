@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Footer from "@/components/Footer";
 
 const features = [
   ["Gagnez du temps", "Automatisez les tâches répétitives et libérez vos équipes."],
@@ -376,7 +377,7 @@ export default function Home() {
         </section>
       </section>
 
-      <footer className="w-full border-t border-[#E5E7EB] bg-white/70 px-8 py-10">
+      <footer className="w-full border-t border-[#E5E7EB] bg-white/70 px-8 py-10" >
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3 md:items-start">
           <div>
             <p className="text-lg font-semibold text-[#111827]">Kirevo</p>
