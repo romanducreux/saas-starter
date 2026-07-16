@@ -26,6 +26,77 @@ const useCases = [
   ["Immobilier", "Qualification prospects, réponses automatiques et préparation des visites."],
 ];
 
+const advantages = [
+  {
+    title: "Une approche moderne",
+    description:
+      "Des automatisations conçues pour supprimer les tâches répétitives et simplifier votre quotidien.",
+    icon: "rocket",
+  },
+  {
+    title: "Des solutions adaptées",
+    description:
+      "Chaque système est construit selon vos outils, vos processus et les besoins réels de votre entreprise.",
+    icon: "target",
+  },
+  {
+    title: "Un gain de temps concret",
+    description:
+      "Vos équipes se concentrent sur les tâches importantes pendant que les opérations répétitives sont automatisées.",
+    icon: "clock",
+  },
+];
+
+const landingOffers = [
+  {
+    name: "Starter",
+    price: "690 €",
+    description:
+      "Pour automatiser une tâche précise et obtenir rapidement un premier gain de temps.",
+    features: [
+      "Audit de 30 minutes",
+      "1 workflow automatisé",
+      "Connexion à vos outils existants",
+      "Installation complète",
+      "Formation de prise en main",
+      "Support pendant 14 jours",
+    ],
+    highlighted: false,
+  },
+  {
+    name: "Business",
+    price: "1 790 €",
+    description:
+      "Pour automatiser plusieurs processus commerciaux et administratifs.",
+    features: [
+      "Audit complet de vos processus",
+      "Jusqu’à 5 workflows",
+      "Intégration de l’intelligence artificielle",
+      "Connexion CRM, e-mails et calendrier",
+      "Tableau de suivi",
+      "Formation de votre équipe",
+      "Support pendant 30 jours",
+    ],
+    highlighted: true,
+  },
+  {
+    name: "Sur mesure",
+    price: "Sur devis",
+    description:
+      "Pour construire un système personnalisé adapté à votre organisation et à vos contraintes métier.",
+    features: [
+      "Analyse approfondie",
+      "Architecture personnalisée",
+      "Automatisations avancées",
+      "Développements spécifiques",
+      "Documentation complète",
+      "Déploiement progressif",
+      "Maintenance disponible",
+    ],
+    highlighted: false,
+  },
+];
+
 export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#F8F9FB] text-[#111827]">
@@ -266,33 +337,97 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="tarifs" className="mt-28 w-full max-w-6xl scroll-mt-32 text-left">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#5B5CF0]">Tarifs</p>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
-            Des offres simples pour commencer.
-          </h2>
+        <section
+          id="tarifs"
+          className="bg-[#F8F9FB] px-6 py-24 pb-12 md:px-8 md:py-32 md:pb-16"
+        >
+          <div className="mx-auto max-w-7xl">
+            <div className="text-center">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#5B5CF0]">
+                Nos offres
+              </p>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {plans.map(([name, price, desc, items]) => (
-              <div key={String(name)} className="card-glow rounded-[2rem] border border-[#E5E7EB] bg-white p-8 shadow-sm transition hover:-translate-y-2 hover:shadow-2xl">
-                <h3 className="text-2xl font-bold">{name}</h3>
-                <p className="mt-4 text-5xl font-bold">{price}</p>
-                <p className="mt-4 text-[#6B7280]">{desc}</p>
+              <h2 className="mx-auto mt-5 max-w-4xl text-4xl font-bold tracking-[-0.045em] text-[#111827] md:text-6xl">
+                Une solution adaptée à chaque niveau d’automatisation.
+              </h2>
 
-                <div className="mt-8 space-y-3 text-sm text-[#374151]">
-                  {(items as string[]).map((item) => (
-                    <p key={String(item)}>✓ {item}</p>
-                  ))}
-                </div>
+              <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[#6B7280]">
+                Nous analysons vos processus, construisons les workflows et installons
+                un système opérationnel directement dans votre entreprise.
+              </p>
+            </div>
 
-                <a
-                  href="/tarifs"
-                  className="mt-8 block w-full rounded-2xl bg-[#111827] px-6 py-4 text-center font-semibold text-white transition hover:-translate-y-1"
+            <div className="mt-16 grid gap-7 lg:grid-cols-3">
+              {landingOffers.map((offer) => (
+                <article
+                  key={offer.name}
+                  className={`relative flex flex-col rounded-[2.5rem] border p-8 transition duration-300 hover:-translate-y-2 hover:shadow-2xl ${
+                    offer.highlighted
+                      ? "border-[#5B5CF0] bg-gradient-to-b from-[#F2F2FF] to-white shadow-[0_25px_70px_rgba(91,92,240,0.14)]"
+                      : "border-[#E5E7EB] bg-white shadow-[0_15px_45px_rgba(17,24,39,0.06)]"
+                  }`}
                 >
-                  Choisir cette offre
-                </a>
-              </div>
-            ))}
+                  {offer.highlighted && (
+                    <span className="absolute right-6 top-6 rounded-full bg-[#5B5CF0] px-4 py-2 text-xs font-semibold text-white">
+                      Offre recommandée
+                    </span>
+                  )}
+
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#5B5CF0]">
+                    {offer.name}
+                  </p>
+
+                  <p className="mt-7 text-5xl font-bold tracking-tight text-[#111827]">
+                    {offer.price}
+                  </p>
+
+                  <p className="mt-5 min-h-[84px] leading-7 text-[#6B7280]">
+                    {offer.description}
+                  </p>
+
+                  <div className="mt-8 border-t border-[#E5E7EB] pt-7">
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9CA3AF]">
+                      Inclus dans cette offre
+                    </p>
+
+                    <div className="mt-5 space-y-4">
+                      {offer.features.map((feature) => (
+                        <div key={feature} className="flex items-start gap-3">
+                          <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-sm font-bold text-emerald-600">
+                            ✓
+                          </span>
+
+                          <p className="text-sm leading-6 text-[#374151]">
+                            {feature}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <a
+                    href="/demo"
+                    className={`mt-9 block rounded-2xl px-6 py-4 text-center font-semibold transition duration-300 hover:scale-[1.02] ${
+                      offer.highlighted
+                        ? "bg-gradient-to-r from-[#5B5CF0] to-[#7C7DFF] text-white shadow-xl shadow-[#5B5CF0]/20"
+                        : "bg-[#111827] text-white"
+                    }`}
+                  >
+                    Échanger sur mon projet
+                  </a>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-10 text-center">
+              <a
+                href="/tarifs"
+                className="inline-flex items-center gap-2 font-semibold text-[#5B5CF0] transition hover:gap-3"
+              >
+                Voir le détail complet des offres
+                <span>→</span>
+              </a>
+            </div>
           </div>
         </section>
 
@@ -377,34 +512,284 @@ export default function Home() {
         </section>
       </section>
 
-      <footer className="w-full border-t border-[#E5E7EB] bg-white/70 px-8 py-10" >
-        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3 md:items-start">
-          <div>
-            <p className="text-lg font-semibold text-[#111827]">Kirevo</p>
-            <p className="mt-2 text-sm text-[#6B7280]">
-              Automatisation IA pour les entreprises modernes.
+      <section className="border-t border-[#E5E7EB] bg-gradient-to-b from-[#F8F9FB] to-white px-6 py-24 md:px-8 md:py-32">
+        <div className="mx-auto max-w-7xl">
+          <div className="text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#5B5CF0]">
+              Les avantages Kirevo
+            </p>
+
+            <h2 className="mt-5 text-4xl font-bold tracking-[-0.045em] text-[#111827] md:text-6xl">
+              Pourquoi choisir Kirevo ?
+            </h2>
+
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[#6B7280] md:text-xl">
+              Une approche moderne et des solutions sur mesure pour automatiser vos
+              tâches répétitives et vous faire gagner du temps.
             </p>
           </div>
 
-        <div className="flex flex-col gap-3 text-sm text-[#6B7280] md:items-center">
-          <a href="#fonctionnalites" className="hover:text-[#111827]">Fonctionnalités</a>
-          <a href="#comment-ca-marche" className="hover:text-[#111827]">Comment ça marche</a>
-          <a href="#cas-usage" className="hover:text-[#111827]">Cas d’usage</a>
-          <a href="/about" className="hover:text-[#111827]">À propos</a>
-          <a href="/tarifs" className="hover:text-[#111827]">Tarifs</a>
-          <a href="/comment-ca-marche" className="hover:text-[#111827]">Comment ça marche</a>
-          <a href="/solutions" className="hover:text-[#111827]">Solutions</a>
-          <a href="/demo" className="hover:text-[#111827]">Démo</a>
-          <a href="#faq" className="hover:text-[#111827]">FAQ</a>
-          <a href="/demo-interactive" className="hover:text-[#111827]">Démo interactive</a>
-          <a href="/contact" className="transition hover:text-[#111827]">Contact</a>
-          <a href="/mentions-legales" className="transition hover:text-[#111827]">Mentions légales</a>
-          <a href="/confidentialite" className="transition hover:text-[#111827]">Confidentialité</a>
-        </div>
+          <div className="mt-16 grid gap-7 lg:grid-cols-3">
+            {advantages.map((advantage) => (
+              <article
+                key={advantage.title}
+                className="group rounded-[2rem] border border-[#E8E9EE] bg-white p-8 shadow-[0_15px_45px_rgba(17,24,39,0.06)] transition duration-300 hover:-translate-y-2 hover:border-[#D6D6FF] hover:shadow-[0_25px_60px_rgba(91,92,240,0.12)]"
+              >
+                <div className="flex items-start gap-6">
+                  <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#F1EFFF] to-[#F8F7FF] text-[#5B5CF0] transition duration-300 group-hover:scale-110">
+                    {advantage.icon === "rocket" && (
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        className="h-10 w-10"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15.59 14.37 14.37 15.59m1.22-1.22a6 6 0 0 0 4.24-6.78l-.18-1.06a2 2 0 0 0-2.18-1.64l-1.06.18a6 6 0 0 0-6.78 4.24m5.96 5.06-5.96-5.06m0 0L7.8 7.48a2 2 0 0 0-2.83 0L3.55 8.9l3.18 3.18m2.9-2.77-2.9 2.77m0 0-1.06 4.24 4.24-1.06m0 0 3.18 3.18 1.42-1.42a2 2 0 0 0 0-2.83l-1.83-1.83"
+                        />
+                      </svg>
+                    )}
 
-          <p className="text-sm text-[#9CA3AF] md:text-right">
-            © 2026 Kirevo. Tous droits réservés.
-          </p>
+                    {advantage.icon === "target" && (
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        className="h-10 w-10"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                      >
+                        <circle cx="12" cy="12" r="8" />
+                        <circle cx="12" cy="12" r="4" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="m14.5 9.5 5-5m0 0v3m0-3h-3"
+                        />
+                      </svg>
+                    )}
+
+                    {advantage.icon === "clock" && (
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        className="h-10 w-10"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                      >
+                        <circle cx="12" cy="12" r="9" />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 7v5l3 2"
+                        />
+                      </svg>
+                    )}
+                  </div>
+
+                  <div>
+                    <div className="text-xl tracking-[0.14em] text-[#5B5CF0]">
+                      ★★★★★
+                    </div>
+
+                    <h3 className="mt-5 text-xl font-bold text-[#111827]">
+                      {advantage.title}
+                    </h3>
+
+                    <p className="mt-4 leading-7 text-[#667085]">
+                      {advantage.description}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      <footer className="border-t border-[#E5E7EB] bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-16 md:px-8">
+          <div className="grid gap-12 md:grid-cols-[1.25fr_0.8fr_0.8fr_0.8fr]">
+            <div>
+              <p className="text-3xl font-bold tracking-tight text-[#111827]">
+                Kirevo
+              </p>
+
+              <p className="mt-6 max-w-sm text-sm leading-7 text-[#667085]">
+                Kirevo aide les entreprises à automatiser leurs tâches commerciales,
+                administratives et opérationnelles grâce à l’intelligence
+                artificielle.
+              </p>
+
+              <a
+                href="mailto:contact@kirevo.fr"
+                className="mt-6 inline-block font-semibold text-[#5B5CF0] transition hover:opacity-70"
+              >
+                contact@kirevo.fr
+              </a>
+
+              <div className="mt-6 flex items-center gap-3">
+                <a
+                  href="https://calendly.com/roman-ducreux/decouverte-kirevo"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Réserver un appel"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#CBD0DD] text-[#667085] transition hover:border-[#5B5CF0] hover:bg-[#F1EFFF] hover:text-[#5B5CF0]"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="h-5 w-5"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                  >
+                    <circle cx="12" cy="12" r="9" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 7v5l3 2"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  href="mailto:contact@kirevo.fr"
+                  aria-label="Contacter Kirevo"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#CBD0DD] text-[#667085] transition hover:border-[#5B5CF0] hover:bg-[#F1EFFF] hover:text-[#5B5CF0]"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="h-5 w-5"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                  >
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m4 7 8 6 8-6"
+                    />
+                  </svg>
+                </a>
+
+                <a
+                  href="/contact"
+                  aria-label="Page de contact"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#CBD0DD] text-[#667085] transition hover:border-[#5B5CF0] hover:bg-[#F1EFFF] hover:text-[#5B5CF0]"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="h-5 w-5"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 4h16v12H7l-3 3V4Z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <p className="font-bold text-[#111827]">Produit</p>
+
+              <div className="mt-6 flex flex-col gap-4 text-sm text-[#667085]">
+                <a
+                  href="/#fonctionnalites"
+                  className="transition hover:text-[#5B5CF0]"
+                >
+                  Fonctionnalités
+                </a>
+
+                <a href="/solutions" className="transition hover:text-[#5B5CF0]">
+                  Solutions
+                </a>
+
+                <a href="/tarifs" className="transition hover:text-[#5B5CF0]">
+                  Tarifs
+                </a>
+
+                <a
+                  href="/demo-interactive"
+                  className="transition hover:text-[#5B5CF0]"
+                >
+                  Démo interactive
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <p className="font-bold text-[#111827]">Ressources</p>
+
+              <div className="mt-6 flex flex-col gap-4 text-sm text-[#667085]">
+                <a
+                  href="/comment-ca-marche"
+                  className="transition hover:text-[#5B5CF0]"
+                >
+                  Comment ça marche
+                </a>
+
+                <a
+                  href="/cas-clients"
+                  className="transition hover:text-[#5B5CF0]"
+                >
+                  Cas clients
+                </a>
+
+                <a href="/about" className="transition hover:text-[#5B5CF0]">
+                  À propos
+                </a>
+
+                <a href="/contact" className="transition hover:text-[#5B5CF0]">
+                  Contact
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <p className="font-bold text-[#111827]">Légal</p>
+
+              <div className="mt-6 flex flex-col gap-4 text-sm text-[#667085]">
+                <a
+                  href="/mentions-legales"
+                  className="transition hover:text-[#5B5CF0]"
+                >
+                  Mentions légales
+                </a>
+
+                <a
+                  href="/confidentialite"
+                  className="transition hover:text-[#5B5CF0]"
+                >
+                  Confidentialité
+                </a>
+
+                <a
+                  href="https://calendly.com/roman-ducreux/decouverte-kirevo"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 font-semibold text-[#5B5CF0] transition hover:gap-3"
+                >
+                  Réserver un appel
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-14 flex flex-col gap-4 border-t border-[#E5E7EB] pt-8 text-sm text-[#7C8497] md:flex-row md:items-center md:justify-between">
+            <p>© 2026 Kirevo. Tous droits réservés.</p>
+
+            <p>Automatisation IA pour les entreprises modernes.</p>
+          </div>
         </div>
       </footer>
     </main>
