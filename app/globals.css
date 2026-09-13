@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7f8fa;
+  --foreground: #111111;
+  --muted: #667085;
+  --border: #e1e4ea;
+  --accent: #5b5cf0;
 }
 
 @theme inline {
@@ -12,66 +15,51 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(-1deg);
-  }
-  50% {
-    transform: translateY(-18px) rotate(1deg);
-  }
-}
-
-@keyframes floatDelay {
-  0%, 100% {
-    transform: translateY(0px) rotate(1deg);
-  }
-  50% {
-    transform: translateY(-14px) rotate(-1deg);
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-delay {
-  animation: floatDelay 7s ease-in-out infinite;
-}
-
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  background: #f8f9fb;
-  color: #111827;
+  overflow-x: hidden;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: #5b5cf0;
+  background: var(--accent);
   color: white;
 }
 
-html {
-  scroll-behavior: smooth;
+:where(a, button, input, textarea, select, summary):focus-visible {
+  outline: 3px solid rgba(91, 92, 240, 0.42);
+  outline-offset: 3px;
+}
+
+:where(input, textarea, select) {
+  color: #111111;
+  caret-color: var(--accent);
+}
+
+:where(input, textarea)::placeholder {
+  color: #7c8497;
+  opacity: 1;
+}
+
+button,
+summary {
+  cursor: pointer;
+}
+
+section {
+  scroll-margin-top: 120px;
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(-1deg);
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
   }
   50% {
     transform: translateY(-18px) rotate(1deg);
@@ -79,20 +67,13 @@ html {
 }
 
 @keyframes floatDelay {
-  0%, 100% {
-    transform: translateY(0px) rotate(1deg);
+  0%,
+  100% {
+    transform: translateY(0) rotate(1deg);
   }
   50% {
     transform: translateY(-14px) rotate(-1deg);
   }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-delay {
-  animation: floatDelay 7s ease-in-out infinite;
 }
 
 @keyframes rise {
@@ -106,20 +87,16 @@ html {
   }
 }
 
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: floatDelay 7s ease-in-out infinite;
+}
+
 .animate-rise {
   animation: rise 1s ease-out both;
-}
-
-button {
-  cursor: pointer;
-}
-
-button:hover {
-  transition: all 0.3s ease;
-}
-
-section {
-  scroll-margin-top: 120px;
 }
 
 .card-glow {
@@ -128,30 +105,48 @@ section {
 }
 
 .card-glow::before {
-  content: "";
   position: absolute;
   inset: -1px;
+  pointer-events: none;
   background: radial-gradient(
     circle at top left,
     rgba(91, 92, 240, 0.16),
     transparent 35%
   );
+  content: "";
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-.card-glow:hover::before {
-  opacity: 1;
+@media (hover: hover) {
+  .card-glow:hover::before {
+    opacity: 1;
+  }
+
+  .hero-card {
+    transition:
+      transform 0.5s ease,
+      box-shadow 0.5s ease;
+  }
+
+  .hero-card:hover {
+    transform: perspective(1200px) rotateX(4deg) rotateY(-4deg)
+      translateY(-10px);
+    box-shadow: 0 40px 80px rgba(91, 92, 240, 0.18);
+  }
 }
 
-.hero-card {
-  transition:
-    transform 0.5s ease,
-    box-shadow 0.5s ease;
-}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 
-.hero-card:hover {
-  transform: perspective(1200px) rotateX(4deg) rotateY(-4deg)
-    translateY(-10px);
-  box-shadow: 0 40px 80px rgba(91, 92, 240, 0.18);
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

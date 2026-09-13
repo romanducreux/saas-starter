@@ -1,4 +1,10 @@
-import Image from "next/image";
+import Link from "next/link";
+
+export const metadata = {
+  title: "Comment ça marche",
+  description:
+    "De l'analyse de vos processus au suivi, découvrez comment Kirevo conçoit et déploie une automatisation utile et maîtrisée.",
+};
 
 const steps = [
   {
@@ -42,48 +48,7 @@ const benefits = [
 
 export default function CommentCaMarchePage() {
   return (
-    <main className="min-h-screen bg-[#F8F9FB] text-[#111827]">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-8">
-        <a href="/" className="flex items-center gap-3">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#E5E7EB] bg-white shadow-sm">
-            <Image
-              src="/kirevo-transparent.png"
-              alt="Kirevo"
-              width={48}
-              height={48}
-              className="h-11 w-11 object-contain"
-              priority
-            />
-          </div>
-
-          <span className="text-xl font-semibold tracking-tight">Kirevo</span>
-        </a>
-
-        <div className="hidden items-center gap-7 text-sm font-medium text-[#6B7280] md:flex">
-          <a href="/#fonctionnalites" className="transition hover:text-[#111827]">
-            Fonctionnalités
-          </a>
-
-          <a href="/solutions" className="transition hover:text-[#111827]">
-            Solutions
-          </a>
-
-          <a href="/tarifs" className="transition hover:text-[#111827]">
-            Tarifs
-          </a>
-
-          <a href="/about" className="transition hover:text-[#111827]">
-            À propos
-          </a>
-        </div>
-
-        <a
-          href="/demo"
-          className="rounded-full bg-gradient-to-r from-[#5B5CF0] to-[#7C7DFF] px-6 py-3 text-sm font-semibold text-white shadow-xl shadow-[#5B5CF0]/20 transition hover:scale-105"
-        >
-          Demander une démo
-        </a>
-      </nav>
+    <main className="min-h-screen bg-[#F7F8FA] text-[#111111]">
 
       <section className="mx-auto max-w-7xl px-6 pb-24 pt-20 md:px-8">
         <div className="text-center">
@@ -91,11 +56,11 @@ export default function CommentCaMarchePage() {
             Comment ça marche
           </p>
 
-          <h1 className="mx-auto mt-5 max-w-5xl text-5xl font-bold tracking-[-0.055em] md:text-7xl">
+          <h1 className="mx-auto mt-5 max-w-5xl text-4xl font-bold tracking-[-0.055em] sm:text-5xl md:text-7xl">
             De vos processus actuels à une entreprise plus automatisée.
           </h1>
 
-          <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-[#6B7280]">
+          <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-[#667085]">
             Kirevo analyse votre fonctionnement, construit les automatisations
             adaptées et connecte vos outils sans bouleverser votre organisation.
           </p>
@@ -114,10 +79,10 @@ export default function CommentCaMarchePage() {
                   {step.number}
                 </div>
 
-                <div className="rounded-[2rem] border border-[#E5E7EB] bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+                <div className="rounded-[2rem] border border-[#E1E4EA] bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
                   <h2 className="text-2xl font-bold">{step.title}</h2>
 
-                  <p className="mt-4 max-w-3xl leading-7 text-[#6B7280]">
+                  <p className="mt-4 max-w-3xl leading-7 text-[#667085]">
                     {step.description}
                   </p>
                 </div>
@@ -141,7 +106,7 @@ export default function CommentCaMarchePage() {
             {benefits.map(([title, description]) => (
               <article
                 key={title}
-                className="rounded-[2rem] border border-[#E5E7EB] bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                className="rounded-[2rem] border border-[#E1E4EA] bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EEF0FF] text-xl text-[#5B5CF0]">
                   ✦
@@ -149,7 +114,7 @@ export default function CommentCaMarchePage() {
 
                 <h3 className="mt-6 text-2xl font-bold">{title}</h3>
 
-                <p className="mt-4 leading-7 text-[#6B7280]">
+                <p className="mt-4 leading-7 text-[#667085]">
                   {description}
                 </p>
               </article>
@@ -172,12 +137,12 @@ export default function CommentCaMarchePage() {
           </p>
 
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-            <a
+            <Link
               href="/demo"
-              className="rounded-2xl bg-white px-8 py-4 text-center font-semibold text-[#111827] transition hover:scale-105"
+              className="rounded-2xl bg-white px-8 py-4 text-center font-semibold text-[#111111] transition hover:scale-105"
             >
-              Demander une démonstration
-            </a>
+              Demander une démo
+            </Link>
 
             <a
               href="https://calendly.com/roman-ducreux/decouverte-kirevo"

@@ -1,65 +1,110 @@
+import Link from "next/link";
+import BrandLogo from "@/components/BrandLogo";
+
+const productLinks = [
+  ["Fonctionnalités", "/fonctionnalites"],
+  ["Solutions", "/solutions"],
+  ["Tarifs", "/tarifs"],
+  ["Démo interactive", "/demo-interactive"],
+];
+
+const resourceLinks = [
+  ["Comment ça marche", "/comment-ca-marche"],
+  ["Cas clients", "/cas-clients"],
+  ["À propos", "/about"],
+  ["Contact", "/contact"],
+];
+
 export default function Footer() {
   return (
-    <footer className="border-t border-[#E5E7EB] bg-white">
-      <div className="mx-auto max-w-7xl px-6 py-16">
+    <footer className="border-t border-[#E1E4EA] bg-white px-6 py-14">
+      <div className="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <Link
+            href="/"
+            aria-label="Kirevo — Accueil"
+            className="inline-flex items-center rounded-xl"
+          >
+            <BrandLogo variant="footer" />
+          </Link>
 
-        <div className="grid gap-12 md:grid-cols-4">
+          <p className="mt-4 max-w-sm text-sm leading-6 text-[#667085]">
+            Kirevo aide les entreprises à automatiser leurs tâches
+            commerciales, administratives et opérationnelles grâce à
+            l&apos;intelligence artificielle.
+          </p>
 
-          <div>
-            <h3 className="text-2xl font-bold text-[#111827]">
-              Kirevo
-            </h3>
+          <a
+            href="mailto:contact@kirevo.fr"
+            className="mt-5 inline-block rounded-md text-sm font-medium text-[#5B5CF0] hover:text-[#4546D9]"
+          >
+            contact@kirevo.fr
+          </a>
+        </div>
 
-            <p className="mt-4 text-sm leading-7 text-[#6B7280]">
-              Automatisez les tâches répétitives de votre entreprise grâce à
-              l'intelligence artificielle.
-            </p>
-          </div>
-
-          <div>
-            <h4 className="font-semibold">Navigation</h4>
-
-            <div className="mt-4 flex flex-col gap-3 text-[#6B7280]">
-              <a href="/">Accueil</a>
-              <a href="/tarifs">Tarifs</a>
-              <a href="/cas-clients">Cas clients</a>
-              <a href="/demo">Démo</a>
-            </div>
-          </div>
-
-          <div>
-            <h4 className="font-semibold">Entreprise</h4>
-
-            <div className="mt-4 flex flex-col gap-3 text-[#6B7280]">
-              <a href="/contact">Contact</a>
-              <a href="/mentions-legales">Mentions légales</a>
-              <a href="/confidentialite">Confidentialité</a>
-            </div>
-          </div>
-
-          <div>
-            <h4 className="font-semibold">Prendre rendez-vous</h4>
-
-            <div className="mt-4 flex flex-col gap-3 text-[#6B7280]">
-              <a href="mailto:contact@kirevo.fr">
-                contact@kirevo.fr
-              </a>
-
-              <a
-                href="https://calendly.com/roman-ducreux/decouverte-kirevo"
-                target="_blank"
+        <nav aria-label="Liens produit">
+          <p className="mb-4 text-sm font-semibold text-[#111111]">Produit</p>
+          <div className="space-y-3 text-sm text-[#667085]">
+            {productLinks.map(([label, href]) => (
+              <Link
+                key={href}
+                href={href}
+                className="block rounded-md hover:text-[#111111]"
               >
-                Réserver un appel
-              </a>
-            </div>
+                {label}
+              </Link>
+            ))}
           </div>
+        </nav>
 
-        </div>
+        <nav aria-label="Liens ressources">
+          <p className="mb-4 text-sm font-semibold text-[#111111]">
+            Ressources
+          </p>
+          <div className="space-y-3 text-sm text-[#667085]">
+            {resourceLinks.map(([label, href]) => (
+              <Link
+                key={href}
+                href={href}
+                className="block rounded-md hover:text-[#111111]"
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+        </nav>
 
-        <div className="mt-12 border-t border-[#E5E7EB] pt-8 text-sm text-[#9CA3AF]">
-          © 2026 Kirevo. Tous droits réservés.
-        </div>
+        <nav aria-label="Liens légaux et rendez-vous">
+          <p className="mb-4 text-sm font-semibold text-[#111111]">Légal</p>
+          <div className="space-y-3 text-sm text-[#667085]">
+            <Link
+              className="block rounded-md hover:text-[#111111]"
+              href="/mentions-legales"
+            >
+              Mentions légales
+            </Link>
+            <Link
+              className="block rounded-md hover:text-[#111111]"
+              href="/confidentialite"
+            >
+              Confidentialité
+            </Link>
+            <a
+              href="https://calendly.com/roman-ducreux/decouverte-kirevo"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-md font-semibold text-[#5B5CF0] hover:text-[#4546D9]"
+            >
+              Réserver un appel
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </nav>
+      </div>
 
+      <div className="mx-auto mt-12 flex max-w-7xl flex-col gap-3 border-t border-[#EEF0F3] pt-8 text-xs text-[#8A94A6] sm:flex-row sm:items-center sm:justify-between">
+        <span>© 2026 Kirevo. Tous droits réservés.</span>
+        <span>Automatisation IA pour les entreprises.</span>
       </div>
     </footer>
   );

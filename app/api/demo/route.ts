@@ -1,19 +1,29 @@
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-  const body = await request.json();
-
   try {
-    const response = await fetch(
-      "https://hook.eu1.make.com/lpihtc92axsid09m0c14scbdokjzqvq6",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      }
-    );
+    const webhookUrl = process.env.MAKE_WEBHOOK_URL;
+
+    if (!webhookUrl) {
+      throw new Error("MAKE_WEBHOOK_URL n'est pas configurée.");
+    }
+
+    const body = await request.json();
+
+    if (!body?.nom || !body?.email || !body?.besoin) {
+      return NextResponse.json(
+        { success: false, message: "Champs obligatoires manquants." },
+        { status: 400 }
+      );
+    }
+
+    const response = await fetch(webhookUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
 
     if (!response.ok) {
       throw new Error("Erreur webhook");
@@ -23,10 +33,12 @@ export async function POST(request: Request) {
       success: true,
     });
   } catch (error) {
+    console.error("Erreur lors de la démo interactive :", error);
+
     return NextResponse.json(
       {
         success: false,
-        message: "Erreur serveur",
+        message: "Impossible d'exécuter la démonstration.",
       },
       {
         status: 500,

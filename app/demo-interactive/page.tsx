@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { FormEvent, useState } from "react";
 
 const workflowSteps = [
@@ -50,6 +49,9 @@ const initialProspects: Prospect[] = [
   },
 ];
 
+const inputClassName =
+  "w-full rounded-2xl border border-[#DDE1E8] bg-white px-5 py-4 outline-none transition focus:border-[#5B5CF0]";
+
 export default function DemoInteractivePage() {
   const [name, setName] = useState("Julien Moreau");
   const [company, setCompany] = useState("Moreau Conseil");
@@ -64,6 +66,7 @@ export default function DemoInteractivePage() {
   const [activeStep, setActiveStep] = useState(-1);
   const [isRunning, setIsRunning] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -72,6 +75,7 @@ export default function DemoInteractivePage() {
 
     setIsRunning(true);
     setIsFinished(false);
+    setErrorMessage(null);
     setActiveStep(0);
 
     try {
@@ -116,12 +120,10 @@ export default function DemoInteractivePage() {
     ]);
 
     setIsFinished(true);
-  } catch (error) {
-    console.error(error);
-    alert(
-      "Une erreur est survenue pendant l’automatisation. Vérifie que le scénario Make est activé."
+  } catch {
+    setErrorMessage(
+      "L’automatisation n’a pas pu être lancée. Réessayez dans quelques instants."
     );
-
     setActiveStep(-1);
   } finally {
     setIsRunning(false);
@@ -129,34 +131,8 @@ export default function DemoInteractivePage() {
 }
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#F8F9FB] text-[#111827]">
+    <main className="min-h-screen overflow-hidden bg-[#F7F8FA] text-[#111111]">
       <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_50%_0%,rgba(91,92,240,0.18),transparent_38%)]" />
-
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-8">
-        <a href="/" className="flex items-center gap-3">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#E5E7EB] bg-white shadow-sm">
-            <Image
-              src="/kirevo-transparent.png"
-              alt="Kirevo"
-              width={48}
-              height={48}
-              className="h-11 w-11 object-contain"
-              priority
-            />
-          </div>
-
-          <span className="text-xl font-semibold tracking-tight">
-            Kirevo
-          </span>
-        </a>
-
-        <a
-          href="/demo"
-          className="rounded-full bg-gradient-to-r from-[#5B5CF0] to-[#7C7DFF] px-5 py-3 text-sm font-semibold text-white shadow-xl shadow-[#5B5CF0]/25 transition hover:scale-105"
-        >
-          Demander une démo
-        </a>
-      </nav>
 
       <section className="mx-auto max-w-7xl px-6 pb-24 pt-16 md:px-8">
         <div className="text-center">
@@ -164,18 +140,18 @@ export default function DemoInteractivePage() {
             Démo interactive
           </p>
 
-          <h1 className="mx-auto mt-5 max-w-5xl text-5xl font-bold tracking-[-0.05em] md:text-7xl">
+          <h1 className="mx-auto mt-5 max-w-5xl text-4xl font-bold tracking-[-0.05em] sm:text-5xl md:text-7xl">
             Voyez Kirevo traiter un prospect en quelques secondes.
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#6B7280]">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#667085]">
             Modifiez les informations, puis lancez l’automatisation pour
             voir le workflow fonctionner.
           </p>
         </div>
 
         <div className="mt-16 grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-          <section className="rounded-[2.5rem] border border-[#E5E7EB] bg-white p-8 shadow-xl">
+          <section className="rounded-[2rem] border border-[#E1E4EA] bg-white p-6 shadow-xl sm:rounded-[2.5rem] sm:p-8">
             <p className="text-sm font-semibold text-[#5B5CF0]">
               1. Nouvelle demande
             </p>
@@ -185,38 +161,65 @@ export default function DemoInteractivePage() {
             </h2>
 
             <form onSubmit={handleSubmit} className="mt-8 space-y-4">
-              <input
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-                required
-                className="w-full rounded-2xl border border-[#E5E7EB] px-5 py-4 outline-none transition focus:border-[#5B5CF0]"
-                placeholder="Nom complet"
-              />
+              <div>
+                <label htmlFor="demo-name" className="mb-2 block text-sm font-semibold text-[#344054]">
+                  Nom complet
+                </label>
+                <input
+                  id="demo-name"
+                  name="nom"
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                  autoComplete="name"
+                  required
+                  className={inputClassName}
+                />
+              </div>
 
-              <input
-                value={company}
-                onChange={(event) => setCompany(event.target.value)}
-                required
-                className="w-full rounded-2xl border border-[#E5E7EB] px-5 py-4 outline-none transition focus:border-[#5B5CF0]"
-                placeholder="Entreprise"
-              />
+              <div>
+                <label htmlFor="demo-company" className="mb-2 block text-sm font-semibold text-[#344054]">
+                  Entreprise
+                </label>
+                <input
+                  id="demo-company"
+                  name="entreprise"
+                  value={company}
+                  onChange={(event) => setCompany(event.target.value)}
+                  autoComplete="organization"
+                  required
+                  className={inputClassName}
+                />
+              </div>
 
-              <input
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                type="email"
-                required
-                className="w-full rounded-2xl border border-[#E5E7EB] px-5 py-4 outline-none transition focus:border-[#5B5CF0]"
-                placeholder="Email professionnel"
-              />
+              <div>
+                <label htmlFor="demo-email" className="mb-2 block text-sm font-semibold text-[#344054]">
+                  E-mail professionnel
+                </label>
+                <input
+                  id="demo-email"
+                  name="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  type="email"
+                  autoComplete="email"
+                  required
+                  className={inputClassName}
+                />
+              </div>
 
-              <textarea
-                value={need}
-                onChange={(event) => setNeed(event.target.value)}
-                required
-                className="min-h-36 w-full rounded-2xl border border-[#E5E7EB] px-5 py-4 outline-none transition focus:border-[#5B5CF0]"
-                placeholder="Besoin du prospect"
-              />
+              <div>
+                <label htmlFor="demo-need" className="mb-2 block text-sm font-semibold text-[#344054]">
+                  Besoin à automatiser
+                </label>
+                <textarea
+                  id="demo-need"
+                  name="besoin"
+                  value={need}
+                  onChange={(event) => setNeed(event.target.value)}
+                  required
+                  className={`${inputClassName} min-h-36 resize-y`}
+                />
+              </div>
 
               <button
                 type="submit"
@@ -227,10 +230,19 @@ export default function DemoInteractivePage() {
                   ? "Automatisation en cours..."
                   : "Lancer l’automatisation"}
               </button>
+
+              {errorMessage && (
+                <p
+                  role="alert"
+                  className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                >
+                  {errorMessage}
+                </p>
+              )}
             </form>
           </section>
 
-          <section className="rounded-[2.5rem] bg-gradient-to-br from-[#111827] to-[#252B3A] p-8 text-white shadow-2xl">
+          <section className="rounded-[2rem] bg-gradient-to-br from-[#111827] to-[#252B3A] p-6 text-white shadow-2xl sm:rounded-[2.5rem] sm:p-8">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-white/50">
@@ -243,6 +255,7 @@ export default function DemoInteractivePage() {
               </div>
 
               <span
+                aria-live="polite"
                 className={`rounded-full px-4 py-2 text-sm font-medium ${
                   isRunning
                     ? "bg-amber-400/10 text-amber-300"
@@ -272,10 +285,10 @@ export default function DemoInteractivePage() {
                     <div
                       className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-sm font-bold transition ${
                         isCompleted
-                          ? "bg-emerald-400 text-[#111827]"
+                          ? "bg-emerald-400 text-[#111111]"
                           : isActive
                             ? "bg-[#7C7DFF] text-white"
-                            : "bg-white text-[#111827]"
+                            : "bg-white text-[#111111]"
                       }`}
                     >
                       {isCompleted
@@ -310,7 +323,7 @@ export default function DemoInteractivePage() {
           </section>
         </div>
 
-        <section className="mt-10 rounded-[2.5rem] border border-[#E5E7EB] bg-white p-8 shadow-xl">
+        <section className="mt-10 rounded-[2.5rem] border border-[#E1E4EA] bg-white p-8 shadow-xl">
           <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
             <div>
               <p className="text-sm font-semibold text-[#5B5CF0]">
@@ -338,10 +351,10 @@ export default function DemoInteractivePage() {
               ].map(([value, label]) => (
                 <div
                   key={label}
-                  className="rounded-2xl bg-[#F8F9FB] px-5 py-4 text-center"
+                  className="rounded-2xl bg-[#F7F8FA] px-5 py-4 text-center"
                 >
                   <p className="text-2xl font-bold">{value}</p>
-                  <p className="mt-1 text-xs text-[#6B7280]">
+                  <p className="mt-1 text-xs text-[#667085]">
                     {label}
                   </p>
                 </div>
@@ -349,8 +362,8 @@ export default function DemoInteractivePage() {
             </div>
           </div>
 
-          <div className="mt-8 overflow-hidden rounded-3xl border border-[#E5E7EB]">
-            <div className="hidden grid-cols-[1fr_1fr_1.5fr_0.7fr_0.7fr] gap-4 bg-[#F8F9FB] px-6 py-4 text-sm font-semibold text-[#6B7280] md:grid">
+          <div className="mt-8 overflow-hidden rounded-3xl border border-[#E1E4EA]">
+            <div className="hidden grid-cols-[1fr_1fr_1.5fr_0.7fr_0.7fr] gap-4 bg-[#F7F8FA] px-6 py-4 text-sm font-semibold text-[#667085] md:grid">
               <span>Prospect</span>
               <span>Entreprise</span>
               <span>Besoin</span>
@@ -361,20 +374,20 @@ export default function DemoInteractivePage() {
             {prospects.map((prospect, index) => (
               <div
                 key={`${prospect.email}-${index}`}
-                className="grid gap-3 border-t border-[#E5E7EB] px-6 py-5 first:border-t-0 md:grid-cols-[1fr_1fr_1.5fr_0.7fr_0.7fr] md:items-center"
+                className="grid gap-3 border-t border-[#E1E4EA] px-6 py-5 first:border-t-0 md:grid-cols-[1fr_1fr_1.5fr_0.7fr_0.7fr] md:items-center"
               >
                 <div>
                   <p className="font-semibold">{prospect.name}</p>
-                  <p className="mt-1 text-xs text-[#6B7280]">
+                  <p className="mt-1 text-xs text-[#667085]">
                     {prospect.email}
                   </p>
                 </div>
 
-                <span className="text-sm text-[#6B7280]">
+                <span className="text-sm text-[#667085]">
                   {prospect.company}
                 </span>
 
-                <span className="text-sm text-[#6B7280]">
+                <span className="text-sm text-[#667085]">
                   {prospect.need}
                 </span>
 
@@ -397,12 +410,12 @@ export default function DemoInteractivePage() {
         </section>
 
         <section className="mt-10 grid gap-6 md:grid-cols-2">
-          <div className="rounded-[2.5rem] border border-[#E5E7EB] bg-white p-8">
+          <div className="rounded-[2.5rem] border border-[#E1E4EA] bg-white p-8">
             <p className="text-sm font-semibold text-[#5B5CF0]">
               Avant Kirevo
             </p>
 
-            <div className="mt-6 space-y-4 text-[#6B7280]">
+            <div className="mt-6 space-y-4 text-[#667085]">
               <p>✕ Lire et trier chaque demande manuellement</p>
               <p>✕ Copier les informations dans le CRM</p>
               <p>✕ Décider quel prospect rappeler en premier</p>

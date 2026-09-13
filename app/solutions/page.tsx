@@ -1,4 +1,10 @@
-import Image from "next/image";
+import Link from "next/link";
+
+export const metadata = {
+  title: "Solutions",
+  description:
+    "Découvrez les automatisations Kirevo adaptées à l'immobilier, aux agences, aux cabinets comptables, au e-commerce et aux entreprises de services.",
+};
 
 const solutions = [
   {
@@ -12,7 +18,7 @@ const solutions = [
     slug: "agences-marketing",
     title: "Agences marketing",
     description:
-      "Centralisation des leads, comptes-rendus, reporting et suivi commercial automatisé.",
+      "Centralisation des prospects, comptes rendus, rapports et suivi commercial automatisé.",
     icon: "✦",
   },
   {
@@ -40,30 +46,7 @@ const solutions = [
 
 export default function SolutionsPage() {
   return (
-    <main className="min-h-screen bg-[#F8F9FB] text-[#111827]">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-8">
-        <a href="/" className="flex items-center gap-3">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#E5E7EB] bg-white shadow-sm">
-            <Image
-              src="/kirevo-transparent.png"
-              alt="Kirevo"
-              width={48}
-              height={48}
-              className="h-11 w-11 object-contain"
-              priority
-            />
-          </div>
-
-          <span className="text-xl font-semibold tracking-tight">Kirevo</span>
-        </a>
-
-        <a
-          href="/demo"
-          className="rounded-full bg-gradient-to-r from-[#5B5CF0] to-[#7C7DFF] px-6 py-3 text-sm font-semibold text-white shadow-xl shadow-[#5B5CF0]/20 transition hover:scale-105"
-        >
-          Demander une démo
-        </a>
-      </nav>
+    <main className="min-h-screen bg-[#F7F8FA] text-[#111111]">
 
       <section className="mx-auto max-w-7xl px-6 pb-24 pt-20 md:px-8">
         <div className="text-center">
@@ -71,11 +54,11 @@ export default function SolutionsPage() {
             Solutions
           </p>
 
-          <h1 className="mx-auto mt-5 max-w-5xl text-5xl font-bold tracking-[-0.055em] md:text-7xl">
+          <h1 className="mx-auto mt-5 max-w-5xl text-4xl font-bold tracking-[-0.055em] sm:text-5xl md:text-7xl">
             Des automatisations adaptées à chaque activité.
           </h1>
 
-          <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-[#6B7280]">
+          <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-[#667085]">
             Kirevo construit des systèmes sur mesure en fonction de votre
             secteur, de vos outils et de vos processus internes.
           </p>
@@ -83,10 +66,10 @@ export default function SolutionsPage() {
 
         <div className="mt-16 grid gap-6 md:grid-cols-2">
           {solutions.map((solution) => (
-            <a
+            <Link
               key={solution.slug}
               href={`/solutions/${solution.slug}`}
-              className="group rounded-[2.5rem] border border-[#E5E7EB] bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:border-[#C7C8FF] hover:shadow-2xl"
+              className="group rounded-[2.5rem] border border-[#E1E4EA] bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:border-[#C7C8FF] hover:shadow-2xl"
             >
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EEF0FF] text-2xl text-[#5B5CF0]">
                 {solution.icon}
@@ -94,7 +77,7 @@ export default function SolutionsPage() {
 
               <h2 className="mt-7 text-3xl font-bold">{solution.title}</h2>
 
-              <p className="mt-4 max-w-xl leading-7 text-[#6B7280]">
+              <p className="mt-4 max-w-xl leading-7 text-[#667085]">
                 {solution.description}
               </p>
 
@@ -102,7 +85,7 @@ export default function SolutionsPage() {
                 Découvrir la solution
                 <span className="transition group-hover:translate-x-1">→</span>
               </span>
-            </a>
+            </Link>
           ))}
         </div>
       </section>

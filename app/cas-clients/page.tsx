@@ -1,4 +1,10 @@
-import Image from "next/image";
+import Link from "next/link";
+
+export const metadata = {
+  title: "Cas clients",
+  description:
+    "Découvrez des exemples concrets de workflows Kirevo pour automatiser le suivi commercial, administratif et opérationnel.",
+};
 
 const cases = [
   {
@@ -22,21 +28,21 @@ const cases = [
   },
   {
     sector: "Agence marketing",
-    title: "Automatiser la gestion des leads, les relances et le reporting.",
+    title: "Automatiser la gestion des prospects, les relances et les rapports.",
     problem:
-      "Les demandes entrantes sont dispersées, les relances prennent du temps et les équipes passent trop d’heures à préparer les comptes-rendus et les rapports clients.",
+      "Les demandes entrantes sont dispersées, les relances prennent du temps et les équipes passent trop d’heures à préparer les comptes rendus et les rapports clients.",
     workflow: [
-      "Lead reçu depuis le site",
+      "Prospect reçu depuis le site",
       "Analyse et qualification par l’IA",
       "Création dans le CRM",
       "Attribution au bon commercial",
       "Relance personnalisée",
-      "Reporting mis à jour",
+      "Rapport mis à jour",
     ],
     results: [
-      "Leads mieux suivis",
+      "Prospects mieux suivis",
       "Relances plus régulières",
-      "Reporting client accéléré",
+      "Rapports clients accélérés",
     ],
   },
   {
@@ -100,53 +106,8 @@ const cases = [
 
 export default function CasClientsPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#F8F9FB] text-[#111827]">
+    <main className="min-h-screen overflow-hidden bg-[#F7F8FA] text-[#111111]">
       <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_50%_0%,rgba(91,92,240,0.14),transparent_38%)]" />
-
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-8">
-        <a href="/" className="flex items-center gap-3">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#E5E7EB] bg-white shadow-sm">
-            <Image
-              src="/kirevo-transparent.png"
-              alt="Kirevo"
-              width={48}
-              height={48}
-              className="h-11 w-11 object-contain"
-              priority
-            />
-          </div>
-
-          <span className="text-xl font-semibold tracking-tight">Kirevo</span>
-        </a>
-
-        <div className="hidden items-center gap-7 text-sm font-medium text-[#6B7280] md:flex">
-          <a
-            href="/comment-ca-marche"
-            className="transition hover:text-[#111827]"
-          >
-            Comment ça marche
-          </a>
-
-          <a href="/solutions" className="transition hover:text-[#111827]">
-            Solutions
-          </a>
-
-          <a href="/tarifs" className="transition hover:text-[#111827]">
-            Tarifs
-          </a>
-
-          <a href="/about" className="transition hover:text-[#111827]">
-            À propos
-          </a>
-        </div>
-
-        <a
-          href="/demo"
-          className="rounded-full bg-gradient-to-r from-[#5B5CF0] to-[#7C7DFF] px-6 py-3 text-sm font-semibold text-white shadow-xl shadow-[#5B5CF0]/20 transition duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-[#5B5CF0]/30"
-        >
-          Demander une démo
-        </a>
-      </nav>
 
       <section className="mx-auto max-w-7xl px-6 pb-24 pt-20 md:px-8">
         <div className="text-center">
@@ -154,11 +115,11 @@ export default function CasClientsPage() {
             Cas clients
           </p>
 
-          <h1 className="mx-auto mt-5 max-w-5xl text-5xl font-bold tracking-[-0.055em] md:text-7xl">
+          <h1 className="mx-auto mt-5 max-w-5xl text-4xl font-bold tracking-[-0.055em] sm:text-5xl md:text-7xl">
             Des automatisations concrètes pour des problèmes réels.
           </h1>
 
-          <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-[#6B7280]">
+          <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-[#667085]">
             Découvrez comment Kirevo transforme des processus manuels en
             workflows rapides, fiables et mesurables.
           </p>
@@ -168,7 +129,7 @@ export default function CasClientsPage() {
           {cases.map((item, index) => (
             <article
               key={item.sector}
-              className="group relative overflow-hidden rounded-[2.75rem] border border-[#E5E7EB] bg-white shadow-xl transition duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#5B5CF0]/10"
+              className="group relative overflow-hidden rounded-[2.75rem] border border-[#E1E4EA] bg-white shadow-xl transition duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#5B5CF0]/10"
             >
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#7C7DFF]/70 to-transparent" />
 
@@ -225,7 +186,7 @@ export default function CasClientsPage() {
                       </h3>
                     </div>
 
-                    <span className="hidden items-center justify-center whitespace-nowrap rounded-full border border-[#E5E7EB] bg-[#F8F9FB] px-5 py-2 text-sm font-semibold text-[#6B7280] sm:inline-flex">
+                    <span className="hidden items-center justify-center whitespace-nowrap rounded-full border border-[#E1E4EA] bg-[#F7F8FA] px-5 py-2 text-sm font-semibold text-[#667085] sm:inline-flex">
                         {item.workflow.length} étapes
                     </span>
                   </div>
@@ -244,7 +205,7 @@ export default function CasClientsPage() {
                           </div>
 
                           <div className="flex-1 border-b border-[#E9EAF0] py-4 transition duration-300 group-last/step:border-b-0 group-hover/step:translate-x-1">
-                            <p className="font-semibold text-[#111827]">
+                            <p className="font-semibold text-[#111111]">
                               {step}
                             </p>
                           </div>
@@ -254,20 +215,20 @@ export default function CasClientsPage() {
                   </div>
 
                   <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                    <a
+                    <Link
                       href="/demo-interactive"
                       className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#5B5CF0] to-[#7C7DFF] px-6 py-4 font-semibold text-white shadow-xl shadow-[#5B5CF0]/20 transition duration-300 hover:scale-105"
                     >
                       Voir la démonstration
                       <span>→</span>
-                    </a>
+                    </Link>
 
-                    <a
+                    <Link
                       href="/demo"
-                      className="inline-flex items-center justify-center rounded-2xl border border-[#E5E7EB] bg-white px-6 py-4 font-semibold text-[#111827] transition duration-300 hover:border-[#5B5CF0] hover:text-[#5B5CF0]"
+                      className="inline-flex items-center justify-center rounded-2xl border border-[#E1E4EA] bg-white px-6 py-4 font-semibold text-[#111111] transition duration-300 hover:border-[#5B5CF0] hover:text-[#5B5CF0]"
                     >
                       Parler de ce besoin
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -284,24 +245,24 @@ export default function CasClientsPage() {
             Votre processus ne ressemble pas à ces exemples ?
           </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#6B7280]">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#667085]">
             Kirevo construit aussi des automatisations sur mesure pour vos
             outils, vos équipes et votre organisation.
           </p>
 
           <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
-            <a
+            <Link
               href="/demo"
               className="rounded-2xl bg-gradient-to-r from-[#5B5CF0] to-[#7C7DFF] px-8 py-4 font-semibold text-white shadow-xl shadow-[#5B5CF0]/20 transition duration-300 hover:scale-105"
             >
               Parler de mon besoin
-            </a>
+            </Link>
 
             <a
               href="https://calendly.com/roman-ducreux/decouverte-kirevo"
               target="_blank"
               rel="noreferrer"
-              className="rounded-2xl border border-[#D9DAFF] bg-white px-8 py-4 font-semibold text-[#111827] transition duration-300 hover:border-[#5B5CF0] hover:text-[#5B5CF0]"
+              className="rounded-2xl border border-[#D9DAFF] bg-white px-8 py-4 font-semibold text-[#111111] transition duration-300 hover:border-[#5B5CF0] hover:text-[#5B5CF0]"
             >
               Réserver un appel
             </a>

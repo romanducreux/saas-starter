@@ -1,16 +1,9 @@
-import Image from "next/image";
-import Footer from "@/components/Footer";
+import Link from "next/link";
 
 const features = [
   ["Gagnez du temps", "Automatisez les tâches répétitives et libérez vos équipes."],
   ["Réduisez vos coûts", "Moins d’erreurs, moins de ressaisie, plus d’efficacité."],
   ["Passez à l’échelle", "Des workflows IA prêts pour accompagner votre croissance."],
-];
-
-const plans = [
-  ["Starter", "49€", "Pour tester l’automatisation IA", ["5 workflows", "Support email", "Dashboard simple"]],
-  ["Pro", "149€", "Pour les PME qui veulent gagner du temps", ["Workflows illimités", "Intégrations CRM", "Support prioritaire"]],
-  ["Business", "Sur devis", "Pour les équipes avec besoins avancés", ["Automatisations sur mesure", "Onboarding dédié", "Accompagnement stratégique"]],
 ];
 
 const testimonials = [
@@ -20,7 +13,7 @@ const testimonials = [
 ];
 
 const useCases = [
-  ["Agences marketing", "Relances clients, comptes-rendus, reporting et propositions commerciales."],
+  ["Agences marketing", "Relances clients, comptes rendus, rapports et propositions commerciales."],
   ["Cabinets comptables", "Collecte de documents, rappels clients et préparation administrative."],
   ["E-commerce", "Réponses SAV, suivi commandes, relances et qualification des demandes."],
   ["Immobilier", "Qualification prospects, réponses automatiques et préparation des visites."],
@@ -99,46 +92,15 @@ const landingOffers = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#F8F9FB] text-[#111827]">
+    <main className="min-h-screen overflow-hidden bg-[#F7F8FA] text-[#111111]">
       <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_50%_0%,rgba(91,92,240,0.20),transparent_35%)]" />
 
-        <nav className="fixed top-6 left-1/2 z-50 w-[92%] max-w-7xl -translate-x-1/2 rounded-3xl border border-white/30 bg-white/70 px-8 py-4 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.08)]">
-
-          <div className="flex items-center justify-between">
-
-            <div className="flex items-center gap-4">
-              <img src="/kirevo-transparent.png" alt="Kirevo" className="h-12 w-12" />
-
-              <h1 className="text-2xl font-bold text-slate-900">
-                Kirevo
-              </h1>
-            </div>
-
-            <div className="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-600">
-              <a href="/fonctionnalites">Fonctionnalités</a>
-              <a href="/solutions">Solutions</a>
-              <a href="/cas-clients" className="transition hover:text-[#111827]">Cas clients</a>
-              <a href="/about">À propos</a>
-              <a href="/tarifs">Tarifs</a>
-            </div>
-
-          <a
-            href="/demo"
-            className="rounded-2xl bg-gradient-to-r from-[#6366F1] to-[#7C3AED] px-7 py-4 font-semibold text-white shadow-xl transition hover:scale-105 whitespace-nowrap"
-          >
-            Demander une démo
-          </a>
-
-          </div>
-
-        </nav>
-
-      <section className="relative z-10 mx-auto flex max-w-7xl flex-col items-center px-8 pt-40 text-center">
-        <div className="mb-6 rounded-full border border-[#E5E7EB] bg-white/80 px-5 py-2 text-sm font-medium text-[#5B5CF0] shadow-sm backdrop-blur">
+      <section className="relative z-10 mx-auto flex max-w-7xl flex-col items-center px-6 pb-24 pt-14 text-center sm:px-8 sm:pt-20">
+        <div className="mb-6 rounded-full border border-[#E1E4EA] bg-white/80 px-5 py-2 text-sm font-medium text-[#5B5CF0] shadow-sm backdrop-blur">
           ✦ Plateforme d’automatisation par IA
         </div>
 
-        <h1 className="max-w-6xl text-6xl font-bold tracking-[-0.06em] md:text-8xl">
+        <h1 className="max-w-6xl text-5xl font-bold tracking-[-0.06em] sm:text-6xl md:text-8xl">
           Automatisez.
           <br />
           Gagnez du temps.
@@ -148,37 +110,37 @@ export default function Home() {
           </span>
         </h1>
 
-        <p className="mt-8 max-w-2xl text-lg leading-8 text-[#6B7280] md:text-xl">
+        <p className="mt-8 max-w-2xl text-lg leading-8 text-[#667085] md:text-xl">
           Kirevo automatise les tâches répétitives de votre entreprise grâce à
           l’intelligence artificielle. Moins d’administratif, plus de croissance.
         </p>
 
         <div className="mt-10 flex flex-col gap-5 sm:flex-row">
-          <a
+          <Link
             href="/demo"
             className="rounded-2xl bg-gradient-to-r from-[#5B5CF0] to-[#7C7DFF] px-10 py-5 text-lg font-semibold text-white shadow-2xl shadow-[#5B5CF0]/25 transition duration-300 hover:scale-105 hover:shadow-[#5B5CF0]/40"
           >
-            Demander une démonstration
-          </a>
+            Demander une démo
+          </Link>
 
-          <a
-            href="#fonctionnalites"
-            className="rounded-2xl border border-[#E5E7EB] bg-white px-10 py-5 text-lg font-semibold text-[#111827] shadow-md transition duration-300 hover:scale-105 hover:border-[#5B5CF0] hover:text-[#5B5CF0]"
+          <Link
+            href="/fonctionnalites"
+            className="rounded-2xl border border-[#E1E4EA] bg-white px-10 py-5 text-lg font-semibold text-[#111111] shadow-md transition duration-300 hover:scale-105 hover:border-[#5B5CF0] hover:text-[#5B5CF0]"
           >
-            Découvrir la plateforme
-          </a>
+            Découvrir les fonctionnalités
+          </Link>
         </div>
 
         <div className="relative mt-24 w-full max-w-6xl animate-rise">
 
-          <div className="hero-card rounded-[2.5rem] border border-[#E5E7EB] bg-white/90 p-8 text-left shadow-2xl shadow-[#5B5CF0]/10 backdrop-blur">
+          <div className="hero-card rounded-[2.5rem] border border-[#E1E4EA] bg-white/90 p-8 text-left shadow-2xl shadow-[#5B5CF0]/10 backdrop-blur">
             <div className="mb-8 flex items-center justify-between">
               <div>
                 <h2 className="text-2xl font-bold">Tableau de bord</h2>
-                <p className="text-sm text-[#6B7280]">Vue d’ensemble de votre activité</p>
+                <p className="text-sm text-[#667085]">Vue d’ensemble de votre activité</p>
               </div>
 
-              <span className="rounded-full border border-[#E5E7EB] px-4 py-2 text-sm text-[#6B7280]">
+              <span className="rounded-full border border-[#E1E4EA] px-4 py-2 text-sm text-[#667085]">
                 7 derniers jours
               </span>
             </div>
@@ -192,9 +154,9 @@ export default function Home() {
               ].map(([label, value, growth]) => (
                 <div
                   key={label}
-                  className="rounded-3xl border border-[#E5E7EB] bg-[#F8F9FB] p-5 transition duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-xl"
+                  className="rounded-3xl border border-[#E1E4EA] bg-[#F7F8FA] p-5 transition duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-xl"
                 >
-                  <p className="text-sm text-[#6B7280]">{label}</p>
+                  <p className="text-sm text-[#667085]">{label}</p>
                   <p className="mt-3 text-3xl font-bold">{value}</p>
                   <p className="mt-2 text-sm text-emerald-500">{growth}</p>
                 </div>
@@ -202,15 +164,15 @@ export default function Home() {
             </div>
 
             <div className="mt-6 grid gap-6 md:grid-cols-2">
-              <div className="rounded-3xl border border-[#E5E7EB] bg-white p-6">
+              <div className="rounded-3xl border border-[#E1E4EA] bg-white p-6">
                 <h3 className="font-semibold">Automatisations récentes</h3>
                 <div className="mt-5 space-y-4 text-sm">
                   {[
-                    "Réponse automatique aux emails clients",
+                    "Réponse automatique aux e-mails clients",
                     "Création de devis après formulaire",
                     "Relance des paiements en attente",
                   ].map((item) => (
-                    <div key={item} className="flex items-center justify-between rounded-2xl bg-[#F8F9FB] px-4 py-4">
+                    <div key={item} className="flex items-center justify-between rounded-2xl bg-[#F7F8FA] px-4 py-4">
                       <span>{item}</span>
                       <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs text-emerald-600">
                         Actif
@@ -223,7 +185,7 @@ export default function Home() {
               <div className="rounded-3xl bg-gradient-to-br from-[#111827] to-[#252B3A] p-6 text-white">
                 <h3 className="font-semibold">Exécution en temps réel</h3>
                 <div className="mt-6 space-y-5 text-sm text-white/80">
-                  <p>● Email reçu de Dupont SARL</p>
+                  <p>● E-mail reçu de Dupont SARL</p>
                   <p>● Analyse par l’IA</p>
                   <p>● Devis généré</p>
                   <p className="text-emerald-400">● Devis envoyé au client</p>
@@ -242,18 +204,18 @@ export default function Home() {
             Automatisez ce qui ralentit votre entreprise.
           </h2>
 
-          <p className="mt-4 max-w-2xl text-lg text-[#6B7280]">
-            Kirevo automatise les tâches répétitives et permet à votre équipe de se concentrer sur l'essentiel.
+          <p className="mt-4 max-w-2xl text-lg text-[#667085]">
+            Kirevo automatise les tâches répétitives et permet à votre équipe de se concentrer sur l&apos;essentiel.
           </p>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {features.map(([title, text]) => (
-              <div key={title} className="card-glow rounded-[2rem] border border-[#E5E7EB] bg-white p-8 text-left shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
+              <div key={title} className="card-glow rounded-[2rem] border border-[#E1E4EA] bg-white p-8 text-left shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
                 <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#EEF0FF] text-[#5B5CF0]">
                   ✦
                 </div>
                 <h3 className="text-2xl font-bold">{title}</h3>
-                <p className="mt-4 text-[#6B7280]">{text}</p>
+                <p className="mt-4 text-[#667085]">{text}</p>
               </div>
             ))}
           </div>
@@ -276,18 +238,18 @@ export default function Home() {
 
             <div className="space-y-12">
               {[
-                ["01", "Analyse", "Nous identifions les tâches qui ralentissent votre équipe : emails, devis, relances ou reporting."],
+                ["01", "Analyse", "Nous identifions les tâches qui ralentissent votre équipe : e-mails, devis, relances ou rapports."],
                 ["02", "Construction", "Kirevo transforme vos processus en workflows IA simples, fiables et mesurables."],
-                ["03", "Automatisation", "Vos tâches répétitives sont exécutées automatiquement, avec un suivi clair dans le dashboard."],
+                ["03", "Automatisation", "Vos tâches répétitives sont exécutées automatiquement, avec un suivi clair dans le tableau de bord."],
               ].map(([number, title, text]) => (
                 <div key={number} className="relative grid gap-6 md:grid-cols-[80px_1fr]">
                   <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#111827] text-sm font-bold text-white shadow-xl shadow-[#5B5CF0]/20">
                     {number}
                   </div>
 
-                  <div className="rounded-[2rem] border border-[#E5E7EB] bg-white/80 p-8 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:shadow-xl">
+                  <div className="rounded-[2rem] border border-[#E1E4EA] bg-white/80 p-8 shadow-sm backdrop-blur transition hover:-translate-y-1 hover:shadow-xl">
                     <h3 className="text-2xl font-bold">{title}</h3>
-                    <p className="mt-3 max-w-2xl text-[#6B7280]">{text}</p>
+                    <p className="mt-3 max-w-2xl text-[#667085]">{text}</p>
                   </div>
                 </div>
               ))}
@@ -300,7 +262,7 @@ export default function Home() {
           className="mt-28 w-full max-w-6xl text-left">
 
           <p className="text-sm font-semibold uppercase tracking-widest text-[#5B5CF0]">
-            Cas d’usage
+            Cas clients
           </p>
 
           <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -311,10 +273,10 @@ export default function Home() {
             {useCases.map(([title, text]) => (
               <div
                 key={title}
-                className="card-glow rounded-[2rem] border border-[#E5E7EB] bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                className="card-glow rounded-[2rem] border border-[#E1E4EA] bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
               >
                 <h3 className="text-2xl font-bold">{title}</h3>
-                <p className="mt-4 text-[#6B7280]">{text}</p>
+                <p className="mt-4 text-[#667085]">{text}</p>
               </div>
             ))}
           </div>
@@ -329,9 +291,9 @@ export default function Home() {
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {testimonials.map(([quote, role]) => (
-              <div key={quote} className="card-glow rounded-[2rem] border border-[#E5E7EB] bg-white p-8 shadow-sm">
+              <div key={quote} className="card-glow rounded-[2rem] border border-[#E1E4EA] bg-white p-8 shadow-sm">
                 <p className="text-lg font-medium leading-8">{quote}</p>
-                <p className="mt-6 text-sm text-[#6B7280]">{role}</p>
+                <p className="mt-6 text-sm text-[#667085]">{role}</p>
               </div>
             ))}
           </div>
@@ -339,7 +301,7 @@ export default function Home() {
 
         <section
           id="tarifs"
-          className="bg-[#F8F9FB] px-6 py-24 pb-12 md:px-8 md:py-32 md:pb-16"
+          className="bg-[#F7F8FA] px-6 py-24 pb-12 md:px-8 md:py-32 md:pb-16"
         >
           <div className="mx-auto max-w-7xl">
             <div className="text-center">
@@ -347,11 +309,11 @@ export default function Home() {
                 Nos offres
               </p>
 
-              <h2 className="mx-auto mt-5 max-w-4xl text-4xl font-bold tracking-[-0.045em] text-[#111827] md:text-6xl">
+              <h2 className="mx-auto mt-5 max-w-4xl text-4xl font-bold tracking-[-0.045em] text-[#111111] md:text-6xl">
                 Une solution adaptée à chaque niveau d’automatisation.
               </h2>
 
-              <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[#6B7280]">
+              <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[#667085]">
                 Nous analysons vos processus, construisons les workflows et installons
                 un système opérationnel directement dans votre entreprise.
               </p>
@@ -364,7 +326,7 @@ export default function Home() {
                   className={`flex flex-col rounded-[2.5rem] border p-8 transition duration-300 hover:-translate-y-2 hover:shadow-2xl ${
                     offer.highlighted
                       ? "border-[#5B5CF0] bg-gradient-to-b from-[#F2F2FF] to-white shadow-[0_25px_70px_rgba(91,92,240,0.14)]"
-                      : "border-[#E5E7EB] bg-white shadow-[0_15px_45px_rgba(17,24,39,0.06)]"
+                      : "border-[#E1E4EA] bg-white shadow-[0_15px_45px_rgba(17,24,39,0.06)]"
                   }`}
                 >
                   <div className="flex items-center justify-between">
@@ -379,15 +341,15 @@ export default function Home() {
                     )}
                   </div>
 
-                  <p className="mt-7 text-5xl font-bold tracking-tight text-[#111827]">
+                  <p className="mt-7 text-5xl font-bold tracking-tight text-[#111111]">
                     {offer.price}
                   </p>
 
-                  <p className="mt-5 min-h-[84px] leading-7 text-[#6B7280]">
+                  <p className="mt-5 min-h-[84px] leading-7 text-[#667085]">
                     {offer.description}
                   </p>
 
-                  <div className="mt-8 border-t border-[#E5E7EB] pt-7">
+                  <div className="mt-8 border-t border-[#E1E4EA] pt-7">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9CA3AF]">
                       Inclus dans cette offre
                     </p>
@@ -407,7 +369,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <a
+                  <Link
                     href="/demo"
                     className={`mt-9 block rounded-2xl px-6 py-4 text-center font-semibold transition duration-300 hover:scale-[1.02] ${
                       offer.highlighted
@@ -416,19 +378,19 @@ export default function Home() {
                     }`}
                   >
                     Échanger sur mon projet
-                  </a>
+                  </Link>
                 </article>
               ))}
             </div>
 
             <div className="mt-10 text-center">
-              <a
+              <Link
                 href="/tarifs"
                 className="inline-flex items-center gap-2 font-semibold text-[#5B5CF0] transition hover:gap-3"
               >
                 Voir le détail complet des offres
                 <span>→</span>
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -450,7 +412,7 @@ export default function Home() {
               ],
               [
                 "Quels outils peuvent être connectés ?",
-                "Kirevo peut s’intégrer à vos emails, CRM, outils internes, formulaires et plateformes métier."
+                "Kirevo peut s’intégrer à vos e-mails, CRM, outils internes, formulaires et plateformes métier."
               ],
               [
                 "Faut-il des compétences techniques ?",
@@ -463,7 +425,7 @@ export default function Home() {
             ].map(([question, answer]) => (
                 <details
                   key={question}
-                  className="group rounded-[2rem] border border-[#E5E7EB] bg-white p-8 shadow-sm transition duration-500 hover:shadow-xl"
+                  className="group rounded-[2rem] border border-[#E1E4EA] bg-white p-8 shadow-sm transition duration-500 hover:shadow-xl"
                 >
                   <summary className="flex cursor-pointer list-none items-center justify-between text-xl font-semibold">
                     {question}
@@ -473,7 +435,7 @@ export default function Home() {
                     </span>
                   </summary>
 
-                  <p className="mt-6 max-w-4xl leading-8 text-[#6B7280] transition-all duration-500 ease-out">
+                  <p className="mt-6 max-w-4xl leading-8 text-[#667085] transition-all duration-500 ease-out">
                     {answer}
                   </p>
                 </details>
@@ -482,7 +444,7 @@ export default function Home() {
         </section>
 
         <section id="contact" className="mt-28 w-full max-w-6xl scroll-mt-32 pb-32 text-left">
-          <div className="rounded-[2.5rem] border border-[#E5E7EB] bg-gradient-to-br from-[#111827] to-[#252B3A] p-10 text-white shadow-2xl">
+          <div className="rounded-[2.5rem] border border-[#E1E4EA] bg-gradient-to-br from-[#111827] to-[#252B3A] p-10 text-white shadow-2xl">
             <p className="text-sm font-semibold uppercase tracking-widest text-[#8B8DFF]">
               Contact
             </p>
@@ -496,36 +458,36 @@ export default function Home() {
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <a
+              <Link
                 href="/demo"
-                className="rounded-2xl bg-white px-8 py-4 text-center font-semibold text-[#111827] transition hover:scale-105"
+                className="rounded-2xl bg-white px-8 py-4 text-center font-semibold text-[#111111] transition hover:scale-105"
               >
                 Demander une démo
-              </a>
+              </Link>
 
               <a
-                href="mailto:roman.ducreux@gmail.com"
+                href="mailto:contact@kirevo.fr"
                 className="rounded-2xl border border-white/20 px-8 py-4 text-center font-semibold text-white transition hover:bg-white/10"
               >
-                Envoyer un email
+                Envoyer un e-mail
               </a>
             </div>
           </div>
         </section>
       </section>
 
-      <section className="border-t border-[#E5E7EB] bg-gradient-to-b from-[#F8F9FB] to-white px-6 py-24 md:px-8 md:py-32">
+      <section className="border-t border-[#E1E4EA] bg-gradient-to-b from-[#F8F9FB] to-white px-6 py-24 md:px-8 md:py-32">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#5B5CF0]">
               Les avantages Kirevo
             </p>
 
-            <h2 className="mt-5 text-4xl font-bold tracking-[-0.045em] text-[#111827] md:text-6xl">
+            <h2 className="mt-5 text-4xl font-bold tracking-[-0.045em] text-[#111111] md:text-6xl">
               Pourquoi choisir Kirevo ?
             </h2>
 
-            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[#6B7280] md:text-xl">
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[#667085] md:text-xl">
               Une approche moderne et des solutions sur mesure pour automatiser vos
               tâches répétitives et vous faire gagner du temps.
             </p>
@@ -596,7 +558,7 @@ export default function Home() {
                       ★★★★★
                     </div>
 
-                    <h3 className="mt-5 text-xl font-bold text-[#111827]">
+                    <h3 className="mt-5 text-xl font-bold text-[#111111]">
                       {advantage.title}
                     </h3>
 
@@ -610,190 +572,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-
-      <footer className="border-t border-[#E5E7EB] bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-16 md:px-8">
-          <div className="grid gap-12 md:grid-cols-[1.25fr_0.8fr_0.8fr_0.8fr]">
-            <div>
-              <p className="text-3xl font-bold tracking-tight text-[#111827]">
-                Kirevo
-              </p>
-
-              <p className="mt-6 max-w-sm text-sm leading-7 text-[#667085]">
-                Kirevo aide les entreprises à automatiser leurs tâches commerciales,
-                administratives et opérationnelles grâce à l’intelligence
-                artificielle.
-              </p>
-
-              <a
-                href="mailto:contact@kirevo.fr"
-                className="mt-6 inline-block font-semibold text-[#5B5CF0] transition hover:opacity-70"
-              >
-                contact@kirevo.fr
-              </a>
-
-              <div className="mt-6 flex items-center gap-3">
-                <a
-                  href="https://calendly.com/roman-ducreux/decouverte-kirevo"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Réserver un appel"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#CBD0DD] text-[#667085] transition hover:border-[#5B5CF0] hover:bg-[#F1EFFF] hover:text-[#5B5CF0]"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="h-5 w-5"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                  >
-                    <circle cx="12" cy="12" r="9" />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 7v5l3 2"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  href="mailto:contact@kirevo.fr"
-                  aria-label="Contacter Kirevo"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#CBD0DD] text-[#667085] transition hover:border-[#5B5CF0] hover:bg-[#F1EFFF] hover:text-[#5B5CF0]"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="h-5 w-5"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                  >
-                    <rect x="3" y="5" width="18" height="14" rx="2" />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="m4 7 8 6 8-6"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  href="/contact"
-                  aria-label="Page de contact"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#CBD0DD] text-[#667085] transition hover:border-[#5B5CF0] hover:bg-[#F1EFFF] hover:text-[#5B5CF0]"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="h-5 w-5"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4 4h16v12H7l-3 3V4Z"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <p className="font-bold text-[#111827]">Produit</p>
-
-              <div className="mt-6 flex flex-col gap-4 text-sm text-[#667085]">
-                <a
-                  href="/#fonctionnalites"
-                  className="transition hover:text-[#5B5CF0]"
-                >
-                  Fonctionnalités
-                </a>
-
-                <a href="/solutions" className="transition hover:text-[#5B5CF0]">
-                  Solutions
-                </a>
-
-                <a href="/tarifs" className="transition hover:text-[#5B5CF0]">
-                  Tarifs
-                </a>
-
-                <a
-                  href="/demo-interactive"
-                  className="transition hover:text-[#5B5CF0]"
-                >
-                  Démo interactive
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <p className="font-bold text-[#111827]">Ressources</p>
-
-              <div className="mt-6 flex flex-col gap-4 text-sm text-[#667085]">
-                <a
-                  href="/comment-ca-marche"
-                  className="transition hover:text-[#5B5CF0]"
-                >
-                  Comment ça marche
-                </a>
-
-                <a
-                  href="/cas-clients"
-                  className="transition hover:text-[#5B5CF0]"
-                >
-                  Cas clients
-                </a>
-
-                <a href="/about" className="transition hover:text-[#5B5CF0]">
-                  À propos
-                </a>
-
-                <a href="/contact" className="transition hover:text-[#5B5CF0]">
-                  Contact
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <p className="font-bold text-[#111827]">Légal</p>
-
-              <div className="mt-6 flex flex-col gap-4 text-sm text-[#667085]">
-                <a
-                  href="/mentions-legales"
-                  className="transition hover:text-[#5B5CF0]"
-                >
-                  Mentions légales
-                </a>
-
-                <a
-                  href="/confidentialite"
-                  className="transition hover:text-[#5B5CF0]"
-                >
-                  Confidentialité
-                </a>
-
-                <a
-                  href="https://calendly.com/roman-ducreux/decouverte-kirevo"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 font-semibold text-[#5B5CF0] transition hover:gap-3"
-                >
-                  Réserver un appel
-                  <span>↗</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-14 flex flex-col gap-4 border-t border-[#E5E7EB] pt-8 text-sm text-[#7C8497] md:flex-row md:items-center md:justify-between">
-            <p>© 2026 Kirevo. Tous droits réservés.</p>
-
-            <p>Automatisation IA pour les entreprises modernes.</p>
-          </div>
-        </div>
-      </footer>
     </main>
     
     

@@ -1,4 +1,5 @@
-import Image from "next/image";
+import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 const solutions = {
@@ -23,13 +24,13 @@ const solutions = {
     name: "Agences marketing",
     title: "Centralisez vos prospects et automatisez votre suivi commercial.",
     description:
-      "Kirevo automatise les demandes entrantes, les comptes-rendus, les relances et le reporting de vos campagnes.",
+      "Kirevo automatise les demandes entrantes, les comptes rendus, les relances et les rapports de vos campagnes.",
     uses: [
-      "Qualification automatique des leads",
+      "Qualification automatique des prospects",
       "Création des prospects dans le CRM",
       "Relances commerciales",
       "Comptes-rendus de rendez-vous",
-      "Reporting automatisé",
+      "Rapports automatisés",
       "Génération de propositions commerciales",
     ],
     example:
@@ -90,11 +91,29 @@ const solutions = {
 
 type SolutionSlug = keyof typeof solutions;
 
+type SolutionPageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({
+  params,
+}: SolutionPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const solution = solutions[slug as SolutionSlug];
+
+  if (!solution) {
+    return { title: "Solution introuvable" };
+  }
+
+  return {
+    title: `Automatisation pour ${solution.name}`,
+    description: solution.description,
+  };
+}
+
 export default async function SolutionPage({
   params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+}: SolutionPageProps) {
   const { slug } = await params;
   const solution = solutions[slug as SolutionSlug];
 
@@ -103,58 +122,35 @@ export default async function SolutionPage({
   }
 
   return (
-    <main className="min-h-screen bg-[#F8F9FB] text-[#111827]">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-8">
-        <a href="/" className="flex items-center gap-3">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-[#E5E7EB] bg-white shadow-sm">
-            <Image
-              src="/kirevo-transparent.png"
-              alt="Kirevo"
-              width={48}
-              height={48}
-              className="h-11 w-11 object-contain"
-              priority
-            />
-          </div>
-
-          <span className="text-xl font-semibold tracking-tight">Kirevo</span>
-        </a>
-
-        <a
-          href="/solutions"
-          className="text-sm font-semibold text-[#5B5CF0]"
-        >
-          ← Toutes les solutions
-        </a>
-      </nav>
+    <main className="min-h-screen bg-[#F7F8FA] text-[#111111]">
 
       <section className="mx-auto max-w-7xl px-6 pb-24 pt-20 md:px-8">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#5B5CF0]">
           Solution · {solution.name}
         </p>
 
-        <h1 className="mt-5 max-w-5xl text-5xl font-bold tracking-[-0.055em] md:text-7xl">
+        <h1 className="mt-5 max-w-5xl text-4xl font-bold tracking-[-0.055em] sm:text-5xl md:text-7xl">
           {solution.title}
         </h1>
 
-        <p className="mt-7 max-w-3xl text-lg leading-8 text-[#6B7280]">
+        <p className="mt-7 max-w-3xl text-lg leading-8 text-[#667085]">
           {solution.description}
         </p>
 
         <div className="mt-14 flex flex-col gap-4 sm:flex-row">
-          <a
+          <Link
             href="/demo"
             className="rounded-2xl bg-gradient-to-r from-[#5B5CF0] to-[#7C7DFF] px-8 py-4 text-center font-semibold text-white shadow-xl shadow-[#5B5CF0]/20 transition hover:scale-105"
           >
-            Demander une démonstration
-          </a>
+            Demander une démo
+          </Link>
 
-          <a
+          <Link
             href="/demo-interactive"
-            className="rounded-2xl border border-[#E5E7EB] bg-white px-8 py-4 text-center font-semibold transition hover:border-[#5B5CF0] hover:text-[#5B5CF0]"
+            className="rounded-2xl border border-[#E1E4EA] bg-white px-8 py-4 text-center font-semibold transition hover:border-[#5B5CF0] hover:text-[#5B5CF0]"
           >
             Voir la démo interactive
-          </a>
+          </Link>
         </div>
 
         <section className="mt-24">
@@ -166,7 +162,7 @@ export default async function SolutionPage({
             {solution.uses.map((item) => (
               <div
                 key={item}
-                className="rounded-[2rem] border border-[#E5E7EB] bg-white p-7 shadow-sm"
+                className="rounded-[2rem] border border-[#E1E4EA] bg-white p-7 shadow-sm"
               >
                 <div className="flex items-start gap-4">
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#EEF0FF] text-[#5B5CF0]">
