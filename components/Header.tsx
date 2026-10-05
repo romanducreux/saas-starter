@@ -8,7 +8,7 @@ import BrandLogo from "@/components/BrandLogo";
 const navigation = [
   { href: "/fonctionnalites", label: "Fonctionnalités" },
   { href: "/solutions", label: "Solutions" },
-  { href: "/cas-clients", label: "Cas clients" },
+  { href: "/cas-clients", label: "Cas d’usage" },
   { href: "/about", label: "À propos" },
   { href: "/tarifs", label: "Tarifs" },
 ];

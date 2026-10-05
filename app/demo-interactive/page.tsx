@@ -333,6 +333,9 @@ export default function DemoInteractivePage() {
               <h2 className="mt-2 text-3xl font-bold">
                 Prospects analysés
               </h2>
+              <p className="mt-2 text-sm text-[#667085]">
+                Simulation interactive · données fictives
+              </p>
             </div>
 
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">

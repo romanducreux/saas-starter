@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const metadata = {
   title: "Demander une démo",
   description:
@@ -62,7 +64,7 @@ export default function DemoPage() {
             action="/api/leads"
             method="POST"
             className="mt-8 space-y-5"
-            aria-describedby="form-help"
+            aria-describedby="privacy-help form-help"
           >
             <div>
               <label htmlFor="nom" className="mb-2 block text-sm font-semibold text-[#344054]">
@@ -134,6 +136,21 @@ export default function DemoPage() {
                 placeholder="Décrivez brièvement le processus qui vous prend du temps."
               />
             </div>
+
+            <p
+              id="privacy-help"
+              className="rounded-2xl bg-[#F7F8FA] px-4 py-3 text-xs leading-5 text-[#667085]"
+            >
+              Les informations envoyées sont utilisées uniquement pour traiter
+              votre demande et vous recontacter. Consultez notre{" "}
+              <Link
+                href="/confidentialite"
+                className="font-semibold text-[#5B5CF0] underline decoration-[#C7C8FF] underline-offset-2"
+              >
+                politique de confidentialité
+              </Link>
+              .
+            </p>
 
             <button
               type="submit"

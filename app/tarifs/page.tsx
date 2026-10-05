@@ -136,6 +136,12 @@ export default function TarifsPage() {
                 {offer.price}
               </p>
 
+              {offer.price !== "Sur devis" && (
+                <p className="mt-2 text-sm font-medium text-[#5B5CF0]">
+                  Budget indicatif à partir de ce montant
+                </p>
+              )}
+
               <p className="mt-5 leading-7 text-[#667085]">
                 {offer.description}
               </p>
@@ -186,6 +192,12 @@ export default function TarifsPage() {
           ))}
         </section>
 
+        <p className="mx-auto mt-8 max-w-3xl text-center text-sm leading-6 text-[#667085]">
+          Les montants présentés sont indicatifs. Le périmètre, les éventuels
+          coûts d’outils tiers et le régime de TVA applicable sont détaillés
+          dans un devis personnalisé avant tout engagement.
+        </p>
+
         <section className="mt-24">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#5B5CF0]">
@@ -212,6 +224,10 @@ export default function TarifsPage() {
 
                 <p className="mt-4 text-3xl font-bold text-[#5B5CF0]">
                   {plan.price}
+                </p>
+
+                <p className="mt-2 text-xs font-medium uppercase tracking-[0.12em] text-[#8A94A6]">
+                  Budget indicatif
                 </p>
 
                 <p className="mt-4 leading-7 text-[#667085]">

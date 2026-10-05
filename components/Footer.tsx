@@ -10,7 +10,7 @@ const productLinks = [
 
 const resourceLinks = [
   ["Comment ça marche", "/comment-ca-marche"],
-  ["Cas clients", "/cas-clients"],
+  ["Cas d’usage", "/cas-clients"],
   ["À propos", "/about"],
   ["Contact", "/contact"],
 ];

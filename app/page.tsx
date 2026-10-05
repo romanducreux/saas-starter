@@ -6,10 +6,10 @@ const features = [
   ["Passez à l’échelle", "Des workflows IA prêts pour accompagner votre croissance."],
 ];
 
-const testimonials = [
-  ["“Nous échangeons actuellement avec des dirigeants français pour construire un outil réellement utile.”", "Bêta privée"],
-  ["“Kirevo est pensé pour automatiser les tâches répétitives avant d’ajouter des fonctionnalités complexes.”", "Approche produit"],
-  ["“Notre objectif : aider les PME à gagner du temps sans recruter immédiatement.”", "Vision Kirevo"],
+const approachPillars = [
+  ["Conception avec le terrain", "Échanger avec les dirigeants pour comprendre les processus réels avant de proposer une solution."],
+  ["Priorité à l’utile", "Automatiser d’abord les tâches répétitives qui créent un gain de temps concret et vérifiable."],
+  ["Déploiement maîtrisé", "Tester, documenter et conserver une validation humaine sur les actions importantes."],
 ];
 
 const useCases = [
@@ -134,15 +134,20 @@ export default function Home() {
         <div className="relative mt-24 w-full max-w-6xl animate-rise">
 
           <div className="hero-card rounded-[2.5rem] border border-[#E1E4EA] bg-white/90 p-8 text-left shadow-2xl shadow-[#5B5CF0]/10 backdrop-blur">
-            <div className="mb-8 flex items-center justify-between">
+            <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h2 className="text-2xl font-bold">Tableau de bord</h2>
                 <p className="text-sm text-[#667085]">Vue d’ensemble de votre activité</p>
               </div>
 
-              <span className="rounded-full border border-[#E1E4EA] px-4 py-2 text-sm text-[#667085]">
-                7 derniers jours
-              </span>
+              <div className="flex flex-wrap gap-2">
+                <span className="rounded-full border border-[#D9DAFF] bg-[#F2F2FF] px-4 py-2 text-sm font-medium text-[#5B5CF0]">
+                  Démonstration · données fictives
+                </span>
+                <span className="rounded-full border border-[#E1E4EA] px-4 py-2 text-sm text-[#667085]">
+                  7 derniers jours
+                </span>
+              </div>
             </div>
 
             <div className="grid gap-4 md:grid-cols-4">
@@ -187,8 +192,8 @@ export default function Home() {
                 <div className="mt-6 space-y-5 text-sm text-white/80">
                   <p>● E-mail reçu de Dupont SARL</p>
                   <p>● Analyse par l’IA</p>
-                  <p>● Devis généré</p>
-                  <p className="text-emerald-400">● Devis envoyé au client</p>
+                  <p>● Devis préparé par l’IA</p>
+                  <p className="text-emerald-400">● Prêt pour validation humaine</p>
                 </div>
               </div>
             </div>
@@ -262,7 +267,7 @@ export default function Home() {
           className="mt-28 w-full max-w-6xl text-left">
 
           <p className="text-sm font-semibold uppercase tracking-widest text-[#5B5CF0]">
-            Cas clients
+            Cas d’usage
           </p>
 
           <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
@@ -283,17 +288,20 @@ export default function Home() {
         </section>
 
 
-        <section id="avis" className="mt-28 w-full max-w-6xl scroll-mt-32 text-left">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#5B5CF0]">Avis</p>
+        <section id="approche" className="mt-28 w-full max-w-6xl scroll-mt-32 text-left">
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#5B5CF0]">Notre démarche</p>
           <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
-            Pensé pour les entreprises qui veulent aller plus vite.
+            Une automatisation utile, claire et maîtrisée.
           </h2>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {testimonials.map(([quote, role]) => (
-              <div key={quote} className="card-glow rounded-[2rem] border border-[#E1E4EA] bg-white p-8 shadow-sm">
-                <p className="text-lg font-medium leading-8">{quote}</p>
-                <p className="mt-6 text-sm text-[#667085]">{role}</p>
+            {approachPillars.map(([title, text]) => (
+              <div key={title} className="card-glow rounded-[2rem] border border-[#E1E4EA] bg-white p-8 shadow-sm">
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#5B5CF0]">
+                  Approche Kirevo
+                </p>
+                <h3 className="mt-4 text-xl font-bold">{title}</h3>
+                <p className="mt-4 leading-7 text-[#667085]">{text}</p>
               </div>
             ))}
           </div>
@@ -382,6 +390,12 @@ export default function Home() {
                 </article>
               ))}
             </div>
+
+            <p className="mx-auto mt-8 max-w-3xl text-center text-sm leading-6 text-[#667085]">
+              Budgets indicatifs à partir des montants affichés. Le périmètre,
+              les éventuels coûts d’outils tiers et le régime de TVA applicable
+              sont précisés dans un devis personnalisé avant tout engagement.
+            </p>
 
             <div className="mt-10 text-center">
               <Link
@@ -554,11 +568,11 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <div className="text-xl tracking-[0.14em] text-[#5B5CF0]">
-                      ★★★★★
-                    </div>
+                    <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#5B5CF0]">
+                      Engagement Kirevo
+                    </p>
 
-                    <h3 className="mt-5 text-xl font-bold text-[#111111]">
+                    <h3 className="mt-3 text-xl font-bold text-[#111111]">
                       {advantage.title}
                     </h3>
 

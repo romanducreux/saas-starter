@@ -238,23 +238,29 @@ export default function AboutPage() {
       <section className="px-6 py-24">
         <div className="mx-auto max-w-7xl">
           <div className="grid overflow-hidden rounded-[36px] border border-[#E4E7EF] bg-white shadow-[0_20px_60px_rgba(15,23,42,0.06)] lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="relative min-h-[420px] overflow-hidden bg-gradient-to-br from-[#EEF0FF] via-[#F8F8FF] to-[#EDE9FE] p-10">
+            <div className="relative min-h-[480px] overflow-hidden bg-gradient-to-br from-[#EEF0FF] via-[#F8F8FF] to-[#EDE9FE] p-8 sm:p-10">
               <div className="absolute -left-16 -top-16 h-56 w-56 rounded-full border-[40px] border-[#5B5CF0]/5" />
               <div className="absolute -bottom-20 -right-16 h-64 w-64 rounded-full border-[45px] border-[#7C5CFC]/5" />
 
-              <div className="relative flex h-full flex-col justify-between">
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-[#5B5CF0] to-[#7C5CFC] text-2xl font-bold text-white shadow-[0_16px_35px_rgba(91,92,240,0.25)]">
-                  K
-                </div>
-
-                <div>
-                  <div className="text-sm font-semibold uppercase tracking-[0.16em] text-[#5B5CF0]">
-                    Kirevo
+              <div className="relative flex h-full items-center justify-center">
+                <div
+                  className="flex aspect-[4/5] w-full max-w-[320px] flex-col items-center justify-center rounded-[34px] border border-white/90 bg-white/75 p-8 text-center shadow-[0_28px_70px_rgba(91,92,240,0.14)] backdrop-blur"
+                  aria-label="Cadre réservé au portrait du fondateur"
+                >
+                  <div className="flex h-32 w-32 items-center justify-center rounded-full border-4 border-white bg-gradient-to-br from-[#5B5CF0] to-[#7C5CFC] text-4xl font-bold text-white shadow-[0_18px_40px_rgba(91,92,240,0.28)]">
+                    RD
                   </div>
-
-                  <div className="mt-3 text-3xl font-bold tracking-[-0.04em] text-[#111111]">
-                    Automatisation IA pour les entreprises.
-                  </div>
+                  <p className="mt-8 text-2xl font-bold tracking-[-0.03em] text-[#111111]">
+                    Roman Ducreux
+                  </p>
+                  <p className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-[#5B5CF0]">
+                    Fondateur de Kirevo
+                  </p>
+                  <div className="mt-8 h-px w-16 bg-[#D9DAFF]" />
+                  <p className="mt-5 text-sm leading-6 text-[#667085]">
+                    Automatisation IA pensée autour des besoins réels des
+                    entreprises.
+                  </p>
                 </div>
               </div>
             </div>

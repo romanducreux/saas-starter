@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Cas clients",
+  title: "Cas d’usage",
   description:
     "Découvrez des exemples concrets de workflows Kirevo pour automatiser le suivi commercial, administratif et opérationnel.",
 };
@@ -112,7 +112,7 @@ export default function CasClientsPage() {
       <section className="mx-auto max-w-7xl px-6 pb-24 pt-20 md:px-8">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#5B5CF0]">
-            Cas clients
+            Cas d’usage
           </p>
 
           <h1 className="mx-auto mt-5 max-w-5xl text-4xl font-bold tracking-[-0.055em] sm:text-5xl md:text-7xl">
@@ -120,8 +120,15 @@ export default function CasClientsPage() {
           </h1>
 
           <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-[#667085]">
-            Découvrez comment Kirevo transforme des processus manuels en
-            workflows rapides, fiables et mesurables.
+            Découvrez des scénarios concrets montrant comment Kirevo peut
+            transformer des processus manuels en workflows rapides, fiables et
+            mesurables.
+          </p>
+
+          <p className="mx-auto mt-5 max-w-3xl rounded-2xl border border-[#D9DAFF] bg-[#F2F2FF] px-5 py-4 text-sm leading-6 text-[#5558C9]">
+            Ces exemples illustrent des cas d’usage possibles. Les résultats
+            réels dépendent des outils, des volumes et du fonctionnement de
+            chaque entreprise.
           </p>
         </div>
 
@@ -140,7 +147,7 @@ export default function CasClientsPage() {
 
                   <div className="relative">
                     <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#9B9DFF]">
-                      Cas {String(index + 1).padStart(2, "0")} · {item.sector}
+                      Exemple {String(index + 1).padStart(2, "0")} · {item.sector}
                     </p>
 
                     <h2 className="mt-5 max-w-xl text-4xl font-bold tracking-tight">
