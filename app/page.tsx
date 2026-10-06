@@ -12,6 +12,13 @@ const approachPillars = [
   ["Déploiement maîtrisé", "Tester, documenter et conserver une validation humaine sur les actions importantes."],
 ];
 
+const pilotBenefits = [
+  ["Un objectif précis", "Choisir une tâche prioritaire et définir le résultat attendu avant de construire."],
+  ["Un workflow testé", "Vérifier le fonctionnement sur des cas concrets avant la mise en service."],
+  ["Une validation humaine", "Garder le contrôle sur les devis, envois et autres actions importantes."],
+  ["Un suivi mesurable", "Comparer le fonctionnement avant et après pour décider de la suite."],
+];
+
 const useCases = [
   ["Agences marketing", "Relances clients, comptes rendus, rapports et propositions commerciales."],
   ["Cabinets comptables", "Collecte de documents, rappels clients et préparation administrative."],
@@ -48,10 +55,11 @@ const landingOffers = [
       "Pour automatiser une tâche précise et obtenir rapidement un premier gain de temps.",
     features: [
       "Audit de 30 minutes",
-      "1 workflow automatisé",
+      "1 objectif de gain défini",
+      "1 workflow automatisé et testé",
       "Connexion à vos outils existants",
-      "Installation complète",
-      "Formation de prise en main",
+      "Validation humaine si nécessaire",
+      "Formation et documentation",
       "Support pendant 14 jours",
     ],
     highlighted: false,
@@ -63,10 +71,11 @@ const landingOffers = [
       "Pour automatiser plusieurs processus commerciaux et administratifs.",
     features: [
       "Audit complet de vos processus",
-      "Jusqu’à 5 workflows",
+      "Jusqu’à 5 workflows documentés",
       "Intégration de l’intelligence artificielle",
       "Connexion CRM, e-mails et calendrier",
       "Tableau de suivi",
+      "Validation humaine sur les actions sensibles",
       "Formation de votre équipe",
       "Support pendant 30 jours",
     ],
@@ -304,6 +313,56 @@ export default function Home() {
                 <p className="mt-4 leading-7 text-[#667085]">{text}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section id="projet-pilote" className="mt-28 w-full max-w-6xl scroll-mt-32 text-left">
+          <div className="overflow-hidden rounded-[2.75rem] border border-white/10 bg-gradient-to-br from-[#111827] to-[#252B3A] p-8 text-white shadow-2xl md:p-12">
+            <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8B8DFF]">
+                  Premier projet
+                </p>
+
+                <h2 className="mt-5 text-4xl font-bold tracking-tight md:text-5xl">
+                  Commencez par un pilote clair, utile et maîtrisé.
+                </h2>
+
+                <p className="mt-6 text-lg leading-8 text-white/70">
+                  Kirevo cible d’abord un processus prioritaire. Vous validez le
+                  périmètre, le fonctionnement et les règles de contrôle avant
+                  d’étendre l’automatisation à d’autres tâches.
+                </p>
+
+                <Link
+                  href="/demo"
+                  className="mt-8 inline-flex rounded-2xl bg-white px-7 py-4 font-semibold text-[#111111] transition hover:scale-[1.03]"
+                >
+                  Identifier mon premier workflow
+                </Link>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {pilotBenefits.map(([title, text], index) => (
+                  <article
+                    key={title}
+                    className="rounded-3xl border border-white/10 bg-white/[0.06] p-6 backdrop-blur"
+                  >
+                    <p className="text-sm font-semibold text-[#AEB0FF]">
+                      0{index + 1}
+                    </p>
+                    <h3 className="mt-3 text-xl font-bold">{title}</h3>
+                    <p className="mt-3 leading-7 text-white/65">{text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <p className="mt-8 border-t border-white/10 pt-6 text-sm leading-6 text-white/55">
+              Le périmètre, le calendrier de livraison, les accès nécessaires
+              et les critères de validation sont précisés dans le devis avant
+              le démarrage.
+            </p>
           </div>
         </section>
 

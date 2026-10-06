@@ -15,12 +15,45 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.kirevo.fr"),
   title: {
     default: "Kirevo | Automatisation IA pour les entreprises",
     template: "%s | Kirevo",
   },
   description:
     "Kirevo conçoit des automatisations IA simples et sur mesure pour libérer les entreprises de leurs tâches répétitives.",
+  applicationName: "Kirevo",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "/",
+    siteName: "Kirevo",
+    title: "Kirevo | Automatisation IA pour les entreprises",
+    description:
+      "Des automatisations IA sur mesure pour simplifier les processus commerciaux et administratifs des entreprises.",
+    images: [
+      {
+        url: "/kirevo-icon.png",
+        width: 2048,
+        height: 2048,
+        alt: "Kirevo — automatisation IA sur mesure",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kirevo | Automatisation IA pour les entreprises",
+    description:
+      "Des automatisations IA sur mesure pour simplifier les processus commerciaux et administratifs des entreprises.",
+    images: ["/kirevo-icon.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

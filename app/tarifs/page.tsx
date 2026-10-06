@@ -14,10 +14,11 @@ const offers = [
       "Pour automatiser une tâche précise et obtenir un premier gain de temps rapidement.",
     features: [
       "Audit de 30 minutes",
-      "1 workflow automatisé",
+      "1 objectif de gain défini",
+      "1 workflow automatisé et testé",
       "Connexion à vos outils existants",
-      "Installation complète",
-      "Formation de prise en main",
+      "Validation humaine si nécessaire",
+      "Formation et documentation",
       "Support pendant 14 jours",
     ],
     examples: [
@@ -34,10 +35,11 @@ const offers = [
       "Pour automatiser plusieurs processus commerciaux et administratifs.",
     features: [
       "Audit complet de vos processus",
-      "Jusqu’à 5 workflows",
+      "Jusqu’à 5 workflows documentés",
       "Intégration de l’intelligence artificielle",
       "Connexion CRM, e-mails et calendrier",
       "Tableau de suivi",
+      "Validation humaine sur les actions sensibles",
       "Formation de votre équipe",
       "Support pendant 30 jours",
     ],
@@ -195,7 +197,8 @@ export default function TarifsPage() {
         <p className="mx-auto mt-8 max-w-3xl text-center text-sm leading-6 text-[#667085]">
           Les montants présentés sont indicatifs. Le périmètre, les éventuels
           coûts d’outils tiers et le régime de TVA applicable sont détaillés
-          dans un devis personnalisé avant tout engagement.
+          dans un devis personnalisé avant tout engagement. Le calendrier de
+          livraison est confirmé après l’audit et la réception des accès utiles.
         </p>
 
         <section className="mt-24">
