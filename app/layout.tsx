@@ -23,13 +23,9 @@ export const metadata: Metadata = {
   description:
     "Kirevo conçoit des automatisations IA simples et sur mesure pour libérer les entreprises de leurs tâches répétitives.",
   applicationName: "Kirevo",
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "/",
     siteName: "Kirevo",
     title: "Kirevo | Automatisation IA pour les entreprises",
     description:
