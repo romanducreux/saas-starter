@@ -49,53 +49,21 @@ const advantages = [
 
 const landingOffers = [
   {
-    name: "Starter",
-    price: "690 €",
-    description:
-      "Pour automatiser une tâche précise et obtenir rapidement un premier gain de temps.",
-    features: [
-      "Audit de 30 minutes",
-      "1 objectif de gain défini",
-      "1 workflow automatisé et testé",
-      "Connexion à vos outils existants",
-      "Validation humaine si nécessaire",
-      "Formation et documentation",
-      "Support pendant 14 jours",
-    ],
-    highlighted: false,
-  },
-  {
-    name: "Business",
-    price: "1 790 €",
-    description:
-      "Pour automatiser plusieurs processus commerciaux et administratifs.",
-    features: [
-      "Audit complet de vos processus",
-      "Jusqu’à 5 workflows documentés",
-      "Intégration de l’intelligence artificielle",
-      "Connexion CRM, e-mails et calendrier",
-      "Tableau de suivi",
-      "Validation humaine sur les actions sensibles",
-      "Formation de votre équipe",
-      "Support pendant 30 jours",
-    ],
-    highlighted: true,
-  },
-  {
     name: "Sur mesure",
     price: "Sur devis",
     description:
-      "Pour construire un système personnalisé adapté à votre organisation et à vos contraintes métier.",
+      "Un accompagnement conçu autour de vos processus, de vos outils et de vos priorités métier.",
     features: [
-      "Analyse approfondie",
-      "Architecture personnalisée",
-      "Automatisations avancées",
-      "Développements spécifiques",
-      "Documentation complète",
-      "Déploiement progressif",
-      "Maintenance disponible",
+      "Échange de découverte et analyse du besoin",
+      "Périmètre, objectifs et critères de validation définis",
+      "Workflows automatisés, testés et documentés",
+      "Connexion à vos outils existants",
+      "Intégration de l’intelligence artificielle si pertinente",
+      "Validation humaine sur les actions importantes",
+      "Formation et prise en main",
+      "Déploiement, support et maintenance adaptés au projet",
     ],
-    highlighted: false,
+    highlighted: true,
   },
 ];
 
@@ -373,20 +341,20 @@ export default function Home() {
           <div className="mx-auto max-w-7xl">
             <div className="text-center">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#5B5CF0]">
-                Nos offres
+                Votre projet
               </p>
 
               <h2 className="mx-auto mt-5 max-w-4xl text-4xl font-bold tracking-[-0.045em] text-[#111111] md:text-6xl">
-                Une solution adaptée à chaque niveau d’automatisation.
+                Une solution sur mesure, pensée pour vos processus.
               </h2>
 
               <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[#667085]">
-                Nous analysons vos processus, construisons les workflows et installons
-                un système opérationnel directement dans votre entreprise.
+                Chaque projet commence par un échange pour comprendre vos besoins,
+                cadrer le périmètre et construire une proposition claire.
               </p>
             </div>
 
-            <div className="mt-16 grid gap-7 lg:grid-cols-3">
+            <div className="mx-auto mt-16 max-w-3xl">
               {landingOffers.map((offer) => (
                 <article
                   key={offer.name}
@@ -403,7 +371,7 @@ export default function Home() {
 
                       {offer.highlighted && (
                       <span className="rounded-full bg-[#5B5CF0] px-4 py-2 text-xs font-semibold text-white">
-                        Offre recommandée
+                        Accompagnement personnalisé
                       </span>
                     )}
                   </div>
@@ -418,7 +386,7 @@ export default function Home() {
 
                   <div className="mt-8 border-t border-[#E1E4EA] pt-7">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9CA3AF]">
-                      Inclus dans cette offre
+                      Inclus dans le devis
                     </p>
 
                     <div className="mt-5 space-y-4">
@@ -451,9 +419,9 @@ export default function Home() {
             </div>
 
             <p className="mx-auto mt-8 max-w-3xl text-center text-sm leading-6 text-[#667085]">
-              Budgets indicatifs à partir des montants affichés. Le périmètre,
-              les éventuels coûts d’outils tiers et le régime de TVA applicable
-              sont précisés dans un devis personnalisé avant tout engagement.
+              Le prix dépend du périmètre, des intégrations, des éventuels coûts
+              d’outils tiers et du niveau d’accompagnement. Tout est détaillé
+              dans un devis personnalisé avant votre engagement.
             </p>
 
             <div className="mt-10 text-center">
@@ -461,7 +429,7 @@ export default function Home() {
                 href="/tarifs"
                 className="inline-flex items-center gap-2 font-semibold text-[#5B5CF0] transition hover:gap-3"
               >
-                Voir le détail complet des offres
+                Découvrir l’accompagnement sur mesure
                 <span>→</span>
               </Link>
             </div>
@@ -493,7 +461,7 @@ export default function Home() {
               ],
               [
                 "Combien coûte Kirevo ?",
-                "Nos offres s’adaptent à la taille de votre entreprise et à vos besoins."
+                "Chaque projet est chiffré sur devis après un échange sur vos besoins, vos outils et le périmètre de l’automatisation."
               ],
             ].map(([question, answer]) => (
                 <details

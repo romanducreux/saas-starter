@@ -1,94 +1,35 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Tarifs",
+  title: "Tarifs sur devis",
   description:
-    "Comparez les offres d'automatisation Kirevo et choisissez l'accompagnement adapté à vos processus.",
+    "Découvrez l'accompagnement sur mesure Kirevo, proposé sur devis selon vos processus, vos outils et vos objectifs.",
 };
 
 const offers = [
   {
-    name: "Starter",
-    price: "690 €",
+    name: "Sur mesure",
+    price: "Sur devis",
     description:
-      "Pour automatiser une tâche précise et obtenir un premier gain de temps rapidement.",
+      "Pour construire une automatisation réellement adaptée à votre organisation.",
     features: [
-      "Audit de 30 minutes",
-      "1 objectif de gain défini",
-      "1 workflow automatisé et testé",
+      "Échange de découverte et analyse du besoin",
+      "Périmètre et objectifs clairement définis",
+      "Workflows automatisés, testés et documentés",
       "Connexion à vos outils existants",
-      "Validation humaine si nécessaire",
+      "Intégration de l’intelligence artificielle si pertinente",
+      "Validation humaine sur les actions importantes",
       "Formation et documentation",
-      "Support pendant 14 jours",
+      "Déploiement progressif",
+      "Support, évolution et maintenance selon le projet",
     ],
     examples: [
       "Formulaire vers CRM",
       "Qualification de prospects",
-      "Relances automatiques",
-    ],
-    highlighted: false,
-  },
-  {
-    name: "Business",
-    price: "1 790 €",
-    description:
-      "Pour automatiser plusieurs processus commerciaux et administratifs.",
-    features: [
-      "Audit complet de vos processus",
-      "Jusqu’à 5 workflows documentés",
-      "Intégration de l’intelligence artificielle",
-      "Connexion CRM, e-mails et calendrier",
-      "Tableau de suivi",
-      "Validation humaine sur les actions sensibles",
-      "Formation de votre équipe",
-      "Support pendant 30 jours",
-    ],
-    examples: [
-      "Gestion complète des prospects",
-      "E-mails automatiques personnalisés",
+      "E-mails et relances personnalisés",
       "Création de documents et comptes rendus",
     ],
     highlighted: true,
-  },
-  {
-    name: "Sur mesure",
-    price: "Sur devis",
-    description:
-      "Pour construire un système personnalisé adapté à votre organisation.",
-    features: [
-      "Analyse approfondie",
-      "Architecture sur mesure",
-      "Automatisations avancées",
-      "Développements spécifiques",
-      "Déploiement progressif",
-      "Documentation complète",
-      "Maintenance disponible",
-    ],
-    examples: [
-      "Plusieurs équipes et logiciels",
-      "Processus métier complexes",
-      "Automatisations à grande échelle",
-    ],
-    highlighted: false,
-  },
-];
-
-const maintenancePlans = [
-  {
-    name: "Essentiel",
-    price: "99 €/mois",
-    description: "Surveillance et corrections de votre automatisation.",
-  },
-  {
-    name: "Évolution",
-    price: "249 €/mois",
-    description: "Support prioritaire et améliorations régulières.",
-  },
-  {
-    name: "Partenaire",
-    price: "499 €/mois",
-    description:
-      "Accompagnement continu et nouvelles automatisations chaque mois.",
   },
 ];
 
@@ -100,21 +41,21 @@ export default function TarifsPage() {
       <section className="mx-auto max-w-7xl px-6 pb-24 pt-20 md:px-8">
         <div className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#5B5CF0]">
-            Offres Kirevo
+            Accompagnement sur devis
           </p>
 
           <h1 className="mx-auto mt-5 max-w-5xl text-4xl font-bold tracking-[-0.055em] sm:text-5xl md:text-7xl">
-            Des automatisations conçues pour produire un résultat concret.
+            Une solution sur mesure pour votre organisation.
           </h1>
 
           <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-[#667085]">
-            Nous analysons vos processus, construisons les workflows et
-            installons un système opérationnel directement dans votre
-            entreprise.
+            Nous analysons vos processus, cadrons les résultats attendus et
+            construisons une proposition adaptée à vos outils, vos contraintes
+            et vos priorités.
           </p>
         </div>
 
-        <section className="mt-16 grid gap-7 lg:grid-cols-3">
+        <section className="mx-auto mt-16 max-w-3xl">
           {offers.map((offer) => (
             <article
               key={offer.name}
@@ -126,7 +67,7 @@ export default function TarifsPage() {
             >
               {offer.highlighted && (
                 <span className="absolute right-6 top-6 rounded-full bg-[#5B5CF0] px-4 py-2 text-xs font-semibold text-white">
-                  Offre recommandée
+                  Accompagnement personnalisé
                 </span>
               )}
 
@@ -137,12 +78,6 @@ export default function TarifsPage() {
               <p className="mt-6 text-5xl font-bold tracking-tight">
                 {offer.price}
               </p>
-
-              {offer.price !== "Sur devis" && (
-                <p className="mt-2 text-sm font-medium text-[#5B5CF0]">
-                  Budget indicatif à partir de ce montant
-                </p>
-              )}
 
               <p className="mt-5 leading-7 text-[#667085]">
                 {offer.description}
@@ -195,50 +130,26 @@ export default function TarifsPage() {
         </section>
 
         <p className="mx-auto mt-8 max-w-3xl text-center text-sm leading-6 text-[#667085]">
-          Les montants présentés sont indicatifs. Le périmètre, les éventuels
-          coûts d’outils tiers et le régime de TVA applicable sont détaillés
-          dans un devis personnalisé avant tout engagement. Le calendrier de
-          livraison est confirmé après l’audit et la réception des accès utiles.
+          Le prix dépend du périmètre, des intégrations, des éventuels coûts
+          d’outils tiers, du niveau d’accompagnement et du régime de TVA
+          applicable. Tout est détaillé dans un devis personnalisé avant votre
+          engagement. Le calendrier est confirmé après le cadrage du projet.
         </p>
 
-        <section className="mt-24">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#5B5CF0]">
-              Maintenance
-            </p>
+        <section className="mx-auto mt-24 max-w-4xl rounded-[2.5rem] border border-[#E1E4EA] bg-white p-8 text-center shadow-sm md:p-12">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#5B5CF0]">
+            Suivi et évolution
+          </p>
 
-            <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Un accompagnement après la mise en place.
-            </h2>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
+            Un accompagnement adapté après la mise en place.
+          </h2>
 
-            <p className="mt-5 text-lg leading-8 text-[#667085]">
-              Les automatisations peuvent évoluer avec vos équipes, vos outils
-              et vos besoins.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {maintenancePlans.map((plan) => (
-              <article
-                key={plan.name}
-                className="rounded-[2rem] border border-[#E1E4EA] bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"
-              >
-                <h3 className="text-2xl font-bold">{plan.name}</h3>
-
-                <p className="mt-4 text-3xl font-bold text-[#5B5CF0]">
-                  {plan.price}
-                </p>
-
-                <p className="mt-2 text-xs font-medium uppercase tracking-[0.12em] text-[#8A94A6]">
-                  Budget indicatif
-                </p>
-
-                <p className="mt-4 leading-7 text-[#667085]">
-                  {plan.description}
-                </p>
-              </article>
-            ))}
-          </div>
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#667085]">
+            La surveillance, les corrections, les évolutions et la maintenance
+            sont définies selon vos besoins et intégrées au devis lorsqu’elles
+            sont nécessaires.
+          </p>
         </section>
 
         <section className="mt-24 rounded-[2.75rem] bg-gradient-to-br from-[#111827] to-[#252B3A] p-10 text-white shadow-2xl md:p-14">
