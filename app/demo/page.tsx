@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import BrandLogo from "@/components/BrandLogo";
 import LeadForm from "@/components/LeadForm";
@@ -50,38 +49,6 @@ export default function DemoPage() {
               </li>
             ))}
           </ul>
-
-          <div className="mt-10 rounded-[1.75rem] border border-white/10 bg-white/[0.07] p-5 backdrop-blur-sm sm:p-6">
-            <div className="grid items-center gap-5 sm:grid-cols-[148px_1fr] lg:grid-cols-1 xl:grid-cols-[148px_1fr]">
-              <div className="mx-auto rounded-2xl bg-white p-3 shadow-xl shadow-black/20 sm:mx-0">
-                <Image
-                  src="/qr-code-kirevo-demo.svg"
-                  alt="QR code ouvrant le formulaire Kirevo"
-                  width={124}
-                  height={124}
-                  unoptimized
-                  className="h-[124px] w-[124px]"
-                />
-              </div>
-
-              <div>
-                <h2 className="text-lg font-semibold">
-                  Continuez sur votre téléphone
-                </h2>
-                <p className="mt-2 text-sm leading-6 text-white/65">
-                  Scannez ce QR code pour ouvrir ce formulaire sur mobile, ou
-                  téléchargez-le pour vos supports Kirevo.
-                </p>
-                <a
-                  href="/qr-code-kirevo-demo.svg"
-                  download="QR-code-Kirevo-formulaire.svg"
-                  className="mt-4 inline-flex rounded-xl border border-white/20 px-4 py-2 text-sm font-semibold text-white transition hover:border-white/40 hover:bg-white/10"
-                >
-                  Télécharger le QR code
-                </a>
-              </div>
-            </div>
-          </div>
         </section>
 
         <section className="rounded-[2rem] border border-[#E1E4EA] bg-white p-7 shadow-xl sm:rounded-[2.5rem] sm:p-10">

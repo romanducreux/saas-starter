@@ -49,10 +49,28 @@ export default function ConfidentialitePage() {
 
             <p className="mt-4 leading-7 text-[#667085]">
               Kirevo collecte uniquement les informations que vous transmettez
-              volontairement : nom, adresse e-mail professionnelle, entreprise,
-              taille d’équipe et description du besoin. Des données techniques
-              de sécurité peuvent également être enregistrées temporairement
-              par l’hébergeur lors de l’accès au site.
+              volontairement : prénom, nom, adresse e-mail, téléphone lorsque
+              vous choisissez de le renseigner, entreprise, fonction, objet de
+              la demande et message. Des données techniques de sécurité peuvent
+              également être enregistrées temporairement par l’hébergeur lors
+              de l’accès au site.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold">
+              Formulaires exploités pour une entreprise cliente
+            </h2>
+
+            <p className="mt-4 leading-7 text-[#667085]">
+              Lorsqu’un formulaire est mis à disposition pour le compte d’une
+              entreprise cliente, cette entreprise détermine la finalité du
+              suivi et agit en qualité de responsable du traitement. Kirevo
+              traite alors les informations pour son compte afin de les
+              transmettre au bon interlocuteur et d’automatiser le suivi. Le
+              formulaire et les documents contractuels applicables doivent
+              identifier l’entreprise concernée et préciser les conditions du
+              traitement.
             </p>
           </section>
 

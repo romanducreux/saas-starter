@@ -4,8 +4,14 @@ import { fileURLToPath } from "node:url";
 import QRCode from "qrcode";
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const outputPath = resolve(projectRoot, "public", "qr-code-kirevo-demo.svg");
-const targetUrl = process.env.KIREVO_QR_URL ?? "https://www.kirevo.fr/demo";
+const outputPath = resolve(
+  projectRoot,
+  "public",
+  "qr-code-formulaire-prospect.svg"
+);
+const targetUrl =
+  process.env.KIREVO_PROSPECT_QR_URL ??
+  "https://www.kirevo.fr/formulaire?client=kirevo-demo&campagne=forum&source=qr-code";
 
 const svg = await QRCode.toString(targetUrl, {
   type: "svg",

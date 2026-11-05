@@ -43,7 +43,7 @@ export default function LeadForm() {
       aria-busy={status === "sending"}
       onSubmit={handleSubmit}
     >
-      <input type="hidden" name="source" value="formulaire-demo" />
+      <input type="hidden" name="source" value="demande-demo-kirevo" />
 
       <div
         aria-hidden="true"
