@@ -7,11 +7,11 @@ const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const outputPath = resolve(
   projectRoot,
   "public",
-  "qr-code-formulaire-prospect.svg"
+  "qr-code-inscription-jpo-bordeaux.svg"
 );
 const targetUrl =
-  process.env.KIREVO_PROSPECT_QR_URL ??
-  "https://www.kirevo.fr/formulaire?client=kirevo-demo&campagne=forum&source=qr-code";
+  process.env.KIREVO_INSCRIPTION_QR_URL ??
+  "https://www.kirevo.fr/inscription?event=jpo-bordeaux-2027";
 
 const svg = await QRCode.toString(targetUrl, {
   type: "svg",

@@ -49,11 +49,12 @@ export default function ConfidentialitePage() {
 
             <p className="mt-4 leading-7 text-[#667085]">
               Kirevo collecte uniquement les informations que vous transmettez
-              volontairement : prénom, nom, adresse e-mail, téléphone lorsque
-              vous choisissez de le renseigner, entreprise, fonction, objet de
-              la demande et message. Des données techniques de sécurité peuvent
-              également être enregistrées temporairement par l’hébergeur lors
-              de l’accès au site.
+              volontairement. Selon le formulaire utilisé, il peut s’agir de
+              votre prénom, nom, adresse e-mail, téléphone, entreprise, taille
+              d’équipe, description du besoin, formation actuelle, formation
+              envisagée et choix concernant les futures relances. Des données
+              techniques de sécurité peuvent également être enregistrées
+              temporairement par l’hébergeur lors de l’accès au site.
             </p>
           </section>
 

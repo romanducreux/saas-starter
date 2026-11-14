@@ -1,17 +1,15 @@
 import { NextResponse } from "next/server";
+import { getRegistrationEvent } from "@/lib/registration-events";
 
 const MAX_LENGTHS = {
   prenom: 80,
   nom: 100,
   email: 254,
   telephone: 30,
-  entreprise: 160,
-  fonction: 120,
-  interet: 120,
-  message: 2000,
-  client: 80,
-  campagne: 80,
-  source: 80,
+  formation_actuelle: 160,
+  formation_interet: 160,
+  event_id: 80,
+  source: 40,
 } as const;
 
 function readField(
@@ -23,21 +21,26 @@ function readField(
     .slice(0, MAX_LENGTHS[field]);
 }
 
-function successResponse(request: Request) {
+function successResponse(request: Request, eventId: string) {
   if (request.headers.get("accept")?.includes("application/json")) {
     return NextResponse.json({ ok: true });
   }
 
-  return NextResponse.redirect(new URL("/merci-prospect", request.url), 303);
+  const redirectUrl = new URL("/merci-inscription", request.url);
+  redirectUrl.searchParams.set("event", eventId);
+
+  return NextResponse.redirect(redirectUrl, 303);
 }
 
 export async function POST(request: Request) {
   try {
     const webhookUrl =
-      process.env.MAKE_PROSPECT_WEBHOOK_URL ?? process.env.MAKE_WEBHOOK_URL;
+      process.env.MAKE_INSCRIPTION_WEBHOOK_URL ??
+      process.env.MAKE_PROSPECT_WEBHOOK_URL ??
+      process.env.MAKE_WEBHOOK_URL;
 
     if (!webhookUrl) {
-      throw new Error("Le webhook Make du formulaire prospect n'est pas configuré.");
+      throw new Error("Le webhook Make des inscriptions n'est pas configuré.");
     }
 
     const webhook = new URL(webhookUrl);
@@ -47,37 +50,38 @@ export async function POST(request: Request) {
     }
 
     const formData = await request.formData();
+    const requestedEventId = readField(formData, "event_id");
+    const registrationEvent = getRegistrationEvent(requestedEventId);
 
     if (String(formData.get("website") ?? "").trim()) {
-      return successResponse(request);
+      return successResponse(request, registrationEvent.id);
     }
 
     const payload = {
-      type: "prospect-client",
+      client_id: registrationEvent.clientId,
+      event_id: registrationEvent.id,
+      event_name: registrationEvent.name,
       prenom: readField(formData, "prenom"),
       nom: readField(formData, "nom"),
       email: readField(formData, "email").toLowerCase(),
       telephone: readField(formData, "telephone"),
-      entreprise: readField(formData, "entreprise"),
-      fonction: readField(formData, "fonction"),
-      interet: readField(formData, "interet"),
-      message: readField(formData, "message"),
-      client: readField(formData, "client") || "kirevo-demo",
-      campagne: readField(formData, "campagne") || "formulaire-general",
-      source: readField(formData, "source") || "qr-code",
-      confidentialite:
-        String(formData.get("confidentialite") ?? "") === "acceptee",
-      date: new Date().toISOString(),
+      formation_actuelle: readField(formData, "formation_actuelle"),
+      formation_interet: readField(formData, "formation_interet"),
+      consentement_relance:
+        String(formData.get("consentement_relance") ?? "") === "oui",
+      source: readField(formData, "source") || "QR Code",
     };
 
     const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email);
+    const phoneIsValid = /^[+0-9().\s-]{8,30}$/.test(payload.telephone);
 
     if (
       !payload.prenom ||
       !payload.nom ||
       !emailIsValid ||
-      !payload.interet ||
-      !payload.confidentialite
+      !phoneIsValid ||
+      !payload.formation_actuelle ||
+      !payload.formation_interet
     ) {
       return NextResponse.json(
         { error: "Certaines informations sont manquantes ou invalides." },
@@ -97,12 +101,12 @@ export async function POST(request: Request) {
       throw new Error(`Erreur Make : ${makeResponse.status}`);
     }
 
-    return successResponse(request);
+    return successResponse(request, registrationEvent.id);
   } catch (error) {
-    console.error("Erreur lors de l'envoi du formulaire prospect :", error);
+    console.error("Erreur lors de l'inscription étudiant :", error);
 
     return NextResponse.json(
-      { error: "Impossible d'envoyer les informations." },
+      { error: "Impossible d'enregistrer l'inscription." },
       { status: 500 }
     );
   }
