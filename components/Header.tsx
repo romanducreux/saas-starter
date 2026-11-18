@@ -13,7 +13,20 @@ const navigation = [
   { href: "/tarifs", label: "Tarifs" },
 ];
 
-const standaloneRoutes = new Set(["/inscription", "/merci-inscription"]);
+const standaloneRoutes = [
+  "/inscription",
+  "/merci-inscription",
+  "/connexion",
+  "/creer-compte",
+  "/mot-de-passe-oublie",
+  "/espace",
+];
+
+function isStandaloneRoute(pathname: string) {
+  return standaloneRoutes.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`),
+  );
+}
 
 function Brand() {
   return (
@@ -31,7 +44,7 @@ export default function Header() {
   const pathname = usePathname();
   const mobileMenuRef = useRef<HTMLDetailsElement>(null);
 
-  if (standaloneRoutes.has(pathname)) {
+  if (isStandaloneRoute(pathname)) {
     return null;
   }
 
@@ -64,6 +77,12 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
+          <Link
+            href="/connexion"
+            className="hidden rounded-2xl border border-[#D7DAE2] bg-white px-4 py-3 text-sm font-semibold text-[#344054] transition hover:border-[#C9CBFF] hover:bg-[#F8F8FF] hover:text-[#5B5CF0] md:inline-flex"
+          >
+            Se connecter
+          </Link>
           <Link
             href="/demo"
             className="hidden rounded-2xl bg-gradient-to-r from-[#5B5CF0] to-[#7C3AED] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(91,92,240,0.24)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_34px_rgba(91,92,240,0.32)] sm:inline-flex lg:px-6"
@@ -121,6 +140,14 @@ export default function Header() {
                     {item.label}
                   </Link>
                 ))}
+
+                <Link
+                  href="/connexion"
+                  onClick={() => mobileMenuRef.current?.removeAttribute("open")}
+                  className="mt-2 rounded-2xl border border-[#D9DAFF] bg-[#F8F8FF] px-4 py-3 text-center text-sm font-semibold text-[#5B5CF0]"
+                >
+                  Se connecter
+                </Link>
 
                 <Link
                   href="/demo"

@@ -4,13 +4,27 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import BrandLogo from "@/components/BrandLogo";
 
-const standaloneRoutes = new Set(["/inscription", "/merci-inscription"]);
+const standaloneRoutes = [
+  "/inscription",
+  "/merci-inscription",
+  "/connexion",
+  "/creer-compte",
+  "/mot-de-passe-oublie",
+  "/espace",
+];
+
+function isStandaloneRoute(pathname: string) {
+  return standaloneRoutes.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`),
+  );
+}
 
 const productLinks = [
   ["Fonctionnalités", "/fonctionnalites"],
   ["Solutions", "/solutions"],
   ["Tarifs", "/tarifs"],
   ["Démo interactive", "/demo-interactive"],
+  ["Espace client", "/connexion"],
 ];
 
 const resourceLinks = [
@@ -23,7 +37,7 @@ const resourceLinks = [
 export default function Footer() {
   const pathname = usePathname();
 
-  if (standaloneRoutes.has(pathname)) {
+  if (isStandaloneRoute(pathname)) {
     return null;
   }
 
