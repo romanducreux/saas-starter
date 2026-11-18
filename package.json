@@ -10,6 +10,8 @@
     "generate:qr": "node scripts/generate-qr.mjs"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.119.1",
     "next": "16.4.5",
     "react": "19.2.4",
     "react-dom": "19.2.4"

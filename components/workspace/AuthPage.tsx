@@ -2,6 +2,7 @@ import Link from "next/link";
 import BrandLogo from "@/components/BrandLogo";
 import AuthForm from "@/components/workspace/AuthForm";
 import Icon from "@/components/workspace/Icon";
+import { isSupabaseConfigured } from "@/lib/supabase/config";
 
 type AuthMode = "login" | "signup" | "forgot";
 
@@ -26,11 +27,11 @@ export default function AuthPage({ mode }: { mode: AuthMode }) {
           </div>
 
           <div className="my-auto w-full max-w-[520px] py-12 lg:py-16">
-            <AuthForm mode={mode} />
+            <AuthForm mode={mode} configured={isSupabaseConfigured} />
           </div>
 
           <p className="text-xs leading-5 text-[#98A2B3]">
-            © 2026 Kirevo · Interface d’aperçu, données fictives.
+            © 2026 Kirevo · Accès privé et sécurisé.
           </p>
         </section>
 

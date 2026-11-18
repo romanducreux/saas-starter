@@ -19,6 +19,7 @@ export type IconName =
   | "integration"
   | "menu"
   | "more"
+  | "offer"
   | "plus"
   | "refresh"
   | "search"
@@ -116,6 +117,12 @@ export default function Icon({ name, ...props }: IconProps) {
         <circle cx="5" cy="12" r="1" fill="currentColor" stroke="none" />
         <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
         <circle cx="19" cy="12" r="1" fill="currentColor" stroke="none" />
+      </>
+    ),
+    offer: (
+      <>
+        <path d="M4 7.5h16v11A2.5 2.5 0 0 1 17.5 21h-11A2.5 2.5 0 0 1 4 18.5v-11Z" />
+        <path d="M8 7.5V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2.5M4 12h16M10 12v2h4v-2" />
       </>
     ),
     plus: <path d="M12 5v14M5 12h14" />,

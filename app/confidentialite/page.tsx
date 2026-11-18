@@ -52,7 +52,11 @@ export default function ConfidentialitePage() {
               volontairement. Selon le formulaire utilisé, il peut s’agir de
               votre prénom, nom, adresse e-mail, téléphone, entreprise, taille
               d’équipe, description du besoin, formation actuelle, formation
-              envisagée et choix concernant les futures relances. Des données
+              envisagée et choix concernant les futures relances. Lors de la
+              création d’un espace client, Kirevo traite également les
+              informations du compte, l’appartenance à l’entreprise, l’offre
+              souscrite, les modules activés et les données d’usage nécessaires
+              au suivi des automatisations. Des données
               techniques de sécurité peuvent également être enregistrées
               temporairement par l’hébergeur lors de l’accès au site.
             </p>
@@ -105,7 +109,10 @@ export default function ConfidentialitePage() {
             </h2>
 
             <p className="mt-4 leading-7 text-[#667085]">
-              Le site est hébergé par Vercel. Les formulaires sont transmis à
+              Le site est hébergé par Vercel. L’authentification et les données
+              de l’espace client sont hébergées par Supabase, avec des règles
+              d’accès destinées à isoler les informations de chaque entreprise.
+              Les formulaires sont transmis à
               Make afin d’acheminer la demande vers les outils de suivi utilisés
               par Kirevo. Selon la nature de l’échange, des services comme la
               messagerie, Notion, OpenAI ou Calendly peuvent intervenir. Seules
@@ -139,7 +146,12 @@ export default function ConfidentialitePage() {
               contact. Si une relation contractuelle est engagée, les données
               nécessaires au suivi du contrat et aux obligations comptables
               sont conservées pendant les durées légales applicables. Les
-              données devenues inutiles sont supprimées ou anonymisées.
+              données d’un compte client sont conservées pendant la durée de
+              l’accès au service, puis supprimées ou anonymisées après la
+              clôture opérationnelle du compte, sous réserve des éléments qui
+              doivent être archivés pour respecter une obligation légale ou
+              défendre un droit. Les données devenues inutiles sont supprimées
+              ou anonymisées.
             </p>
           </section>
 
@@ -147,8 +159,10 @@ export default function ConfidentialitePage() {
             <h2 className="text-2xl font-semibold">Cookies</h2>
 
             <p className="mt-4 leading-7 text-[#667085]">
-              La version actuelle du site ne dépose pas volontairement de
-              cookies publicitaires ou de suivi d’audience. Les services
+              Le site ne dépose pas volontairement de cookies publicitaires ou
+              de suivi d’audience. L’espace client utilise uniquement des
+              cookies techniques indispensables à la connexion, à la sécurité
+              et au maintien de la session. Les services
               externes ouverts depuis un lien, comme Calendly, appliquent leur
               propre politique de confidentialité et de cookies.
             </p>
@@ -203,7 +217,7 @@ export default function ConfidentialitePage() {
         </div>
 
         <p className="mt-6 text-sm text-[#8A94A6]">
-          Dernière mise à jour : 5 octobre 2026.
+          Dernière mise à jour : 18 novembre 2026.
         </p>
       </div>
     </main>
