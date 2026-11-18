@@ -118,6 +118,149 @@ section {
   transition: opacity 0.3s ease;
 }
 
+@keyframes brick-arrive {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -28px, 0) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.kirevo-brick-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin: 0;
+  padding: 0 20px 14px 0;
+  list-style: none;
+  perspective: 1200px;
+}
+
+.kirevo-brick-wrap {
+  position: relative;
+  z-index: 1;
+  margin-left: var(--brick-offset);
+  color: var(--brick-ink);
+  animation: brick-arrive 0.46s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--brick-delay);
+}
+
+.kirevo-brick {
+  position: relative;
+  display: flex;
+  min-height: 88px;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 16px 5px 7px 16px;
+  background: linear-gradient(110deg, rgba(255, 255, 255, 0.13), transparent 35%), var(--brick-main);
+  padding: 16px 16px 14px;
+  box-shadow: 0 18px 28px rgba(17, 24, 39, 0.13), inset 0 -5px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  transform: rotateX(1.5deg);
+  transform-origin: center bottom;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.kirevo-brick::before {
+  position: absolute;
+  z-index: -1;
+  top: -17px;
+  right: -16px;
+  left: 8px;
+  height: 19px;
+  border-radius: 10px 8px 2px 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.16), transparent 54%), var(--brick-top);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  clip-path: polygon(12px 0, 100% 0, calc(100% - 16px) 100%, 0 100%);
+  content: "";
+}
+
+.kirevo-brick::after {
+  position: absolute;
+  z-index: -2;
+  top: -2px;
+  right: -16px;
+  bottom: 5px;
+  width: 17px;
+  border-radius: 0 6px 7px 0;
+  background: var(--brick-side);
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.12);
+  clip-path: polygon(0 17px, 100% 0, 100% calc(100% - 8px), 0 100%);
+  content: "";
+}
+
+.kirevo-brick-stud {
+  position: absolute;
+  z-index: 2;
+  top: -23px;
+  width: 24px;
+  height: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  background: var(--brick-top);
+  box-shadow: inset 0 2px 1px rgba(255, 255, 255, 0.23), 0 4px 4px rgba(17, 24, 39, 0.12);
+}
+
+.kirevo-brick-stud-one { left: 13%; }
+.kirevo-brick-stud-two { left: 35%; }
+.kirevo-brick-stud-three { left: 58%; }
+.kirevo-brick-stud-four { left: 80%; }
+
+.kirevo-brick-platform {
+  position: relative;
+  display: flex;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px 0 24px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #cfd3dd, #aeb4c2);
+  color: rgba(17, 24, 39, 0.35);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  box-shadow: 0 20px 35px rgba(17, 24, 39, 0.18), inset 0 5px 9px rgba(255, 255, 255, 0.6), inset 0 -5px 8px rgba(17, 24, 39, 0.14);
+}
+
+.kirevo-brick-platform::after {
+  position: absolute;
+  right: 8%;
+  bottom: -24px;
+  left: 8%;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(17, 24, 39, 0.13);
+  filter: blur(12px);
+  content: "";
+}
+
+@media (hover: hover) {
+  .kirevo-brick:hover {
+    transform: translateY(-3px) rotateX(1.5deg);
+    box-shadow: 0 23px 36px rgba(17, 24, 39, 0.18), inset 0 -5px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  }
+}
+
+@media (max-width: 639px) {
+  .kirevo-brick-stack {
+    gap: 20px;
+    padding-right: 13px;
+  }
+
+  .kirevo-brick {
+    min-height: 84px;
+    padding: 14px 12px;
+  }
+
+  .kirevo-brick-stud {
+    width: 19px;
+    height: 8px;
+  }
+}
+
 @media (hover: hover) {
   .card-glow:hover::before {
     opacity: 1;

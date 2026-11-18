@@ -55,6 +55,33 @@ export default function TarifsPage() {
           </p>
         </div>
 
+        <section className="mx-auto mt-12 max-w-5xl overflow-hidden rounded-[2.25rem] border border-[#D9DAFF] bg-white shadow-[0_18px_55px_rgba(91,92,240,0.09)]">
+          <div className="grid gap-0 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div className="p-7 sm:p-9">
+              <div className="inline-flex rounded-full bg-[#F0F0FF] px-3 py-1.5 text-xs font-semibold text-[#5B5CF0]">
+                Nouveau · configurateur interactif
+              </div>
+              <h2 className="mt-4 text-2xl font-bold tracking-[-0.035em] sm:text-3xl">
+                Visualisez votre solution brique par brique.
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-[#667085] sm:text-base">
+                Sélectionnez les modules utiles, observez votre pile 3D et obtenez une première estimation de la mise en place et du suivi mensuel.
+              </p>
+              <p className="mt-3 text-xs leading-5 text-[#8A94A6]">
+                Cette simulation reste indicative : le prix définitif est confirmé dans un devis après le cadrage.
+              </p>
+            </div>
+            <div className="flex h-full items-center border-t border-[#EEF0F3] bg-[#F8F8FF] p-7 lg:border-l lg:border-t-0 sm:p-9">
+              <Link
+                href="/espace/automatisations/nouvelle"
+                className="inline-flex min-h-12 w-full items-center justify-center rounded-2xl bg-gradient-to-r from-[#5B5CF0] to-[#7C3AED] px-6 py-3 text-center text-sm font-semibold text-white shadow-[0_14px_32px_rgba(91,92,240,0.24)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_38px_rgba(91,92,240,0.32)] lg:w-auto"
+              >
+                Essayer le configurateur
+              </Link>
+            </div>
+          </div>
+        </section>
+
         <section className="mx-auto mt-16 max-w-3xl">
           {offers.map((offer) => (
             <article

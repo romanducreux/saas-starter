@@ -28,6 +28,7 @@ export default function BrandLogo({ variant = "header" }: BrandLogoProps) {
         alt=""
         width={2508}
         height={627}
+      loading={variant === "header" ? "eager" : "lazy"}
         className={`absolute max-w-none select-none ${sizes.image}`}
         sizes={variant === "header" ? "304px" : "361px"}
       />

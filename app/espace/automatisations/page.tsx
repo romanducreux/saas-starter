@@ -18,7 +18,7 @@ const templates = [
 export default function AutomationsPage() {
   return (
     <div className="space-y-8">
-      <PageHeader title="Automatisations" description="Créez, activez et suivez vos parcours depuis un même endroit." action={{ href: "/espace/automatisations/nouvelle", label: "Créer une automatisation" }} />
+      <PageHeader title="Automatisations" description="Créez, activez et suivez vos parcours depuis un même endroit." action={{ href: "/espace/automatisations/nouvelle", label: "Composer une solution" }} />
 
       <section className="rounded-[28px] border border-[#E1E4EA] bg-white p-4 sm:p-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
