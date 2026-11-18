@@ -13,6 +13,8 @@ const navigation = [
   { href: "/tarifs", label: "Tarifs" },
 ];
 
+const standaloneRoutes = new Set(["/inscription", "/merci-inscription"]);
+
 function Brand() {
   return (
     <Link
@@ -28,6 +30,10 @@ function Brand() {
 export default function Header() {
   const pathname = usePathname();
   const mobileMenuRef = useRef<HTMLDetailsElement>(null);
+
+  if (standaloneRoutes.has(pathname)) {
+    return null;
+  }
 
   const isCurrent = (href: string) =>
     href === "/solutions"

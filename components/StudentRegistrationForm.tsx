@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { type FormEvent, useState } from "react";
 
 const inputClassName =
-  "w-full rounded-2xl border border-[#DDE1E8] bg-white px-5 py-4 text-[#111111] outline-none transition placeholder:text-[#7C8497] hover:border-[#C7CBD4] focus:border-[#5B5CF0] focus:ring-4 focus:ring-[#5B5CF0]/10";
+  "w-full rounded-2xl border border-[#D9E2EF] bg-white px-5 py-4 text-[#182230] outline-none transition placeholder:text-[#7C8497] hover:border-[#B8C7DB] focus:border-[#2563EB] focus:ring-4 focus:ring-[#2563EB]/10";
 
 type StudentRegistrationFormProps = {
   eventId: string;
@@ -179,36 +179,36 @@ export default function StudentRegistrationForm({
         />
       </div>
 
-      <div className="rounded-2xl border border-[#EAECF0] bg-[#F7F8FA] px-4 py-4">
+      <div className="rounded-2xl border border-[#DCE5F1] bg-[#F7F9FC] px-4 py-4">
         <div className="flex items-start gap-3">
           <input
             id="consentement-relance"
             name="consentement_relance"
             type="checkbox"
             value="oui"
-            className="mt-0.5 h-5 w-5 shrink-0 accent-[#5B5CF0]"
+            className="mt-0.5 h-5 w-5 shrink-0 accent-[#2563EB]"
           />
           <label
             htmlFor="consentement-relance"
             className="text-xs leading-5 text-[#667085]"
           >
-            J&apos;accepte de recevoir des informations et des relances concernant
-            cette formation et de futurs événements. Ce choix est facultatif et
-            peut être retiré à tout moment.
+            Oui, je souhaite recevoir par e-mail des informations complémentaires
+            sur cette formation et les prochains événements. Ce choix est
+            facultatif et peut être retiré à tout moment.
           </label>
         </div>
       </div>
 
       <p
         id="student-privacy"
-        className="rounded-2xl border border-[#EAECF0] bg-white px-4 py-3 text-xs leading-5 text-[#667085]"
+        className="rounded-2xl border border-[#DCE5F1] bg-white px-4 py-3 text-xs leading-5 text-[#667085]"
       >
-        Les informations obligatoires sont utilisées pour gérer votre demande
-        d&apos;inscription. Consultez la{" "}
+        Les informations saisies sont utilisées pour gérer votre inscription et
+        vous envoyer son récapitulatif. Consultez la{" "}
         <Link
           href="/confidentialite"
           target="_blank"
-          className="font-semibold text-[#5B5CF0] underline decoration-[#C7C8FF] underline-offset-2"
+          className="font-semibold text-[#2563EB] underline decoration-[#AFC8F4] underline-offset-2"
         >
           politique de confidentialité
         </Link>
@@ -233,13 +233,13 @@ export default function StudentRegistrationForm({
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full rounded-2xl bg-gradient-to-r from-[#5B5CF0] to-[#7C7DFF] px-6 py-4 font-semibold text-white shadow-xl shadow-[#5B5CF0]/20 transition hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-[#5B5CF0]/25 disabled:cursor-wait disabled:opacity-70 disabled:hover:translate-y-0"
+        className="w-full rounded-2xl bg-gradient-to-r from-[#1D4ED8] to-[#0E7490] px-6 py-4 font-semibold text-white shadow-xl shadow-[#1D4ED8]/20 transition hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-[#1D4ED8]/25 disabled:cursor-wait disabled:opacity-70 disabled:hover:translate-y-0"
       >
         {status === "sending" ? "Inscription en cours…" : "Valider mon inscription"}
       </button>
 
       <p id="student-help" className="text-center text-xs leading-5 text-[#7C8497]">
-        Formulaire sécurisé et propulsé par Kirevo.
+        Formulaire sécurisé · Aucune création de compte nécessaire
       </p>
     </form>
   );

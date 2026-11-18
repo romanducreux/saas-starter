@@ -1,5 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import BrandLogo from "@/components/BrandLogo";
+
+const standaloneRoutes = new Set(["/inscription", "/merci-inscription"]);
 
 const productLinks = [
   ["Fonctionnalités", "/fonctionnalites"],
@@ -16,6 +21,12 @@ const resourceLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (standaloneRoutes.has(pathname)) {
+    return null;
+  }
+
   return (
     <footer className="border-t border-[#E1E4EA] bg-white px-6 py-14">
       <div className="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
