@@ -49,13 +49,13 @@ export default async function WorkspaceHome() {
         <article className="rounded-[28px] border border-[#E1E4EA] bg-white p-5 shadow-[0_8px_26px_rgba(17,24,39,0.035)] sm:p-6">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div><h2 className="text-lg font-semibold tracking-[-0.02em]">Activité des automatisations</h2><p className="mt-1 text-sm text-[#8A94A6]">Exécutions quotidiennes sur 30 jours</p></div>
-            <Link href="/espace/performances" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#5B5CF0] hover:text-[#4546D9]">Voir les performances <Icon name="arrow" className="h-4 w-4" /></Link>
+            <Link href="/espace/performances" className="inline-flex items-center text-sm font-semibold text-[#5B5CF0] hover:text-[#4546D9]">Voir les performances</Link>
           </div>
           <div className="mt-7 overflow-hidden rounded-2xl bg-[#FAFAFC] px-3 pb-3 pt-5 sm:px-5">
             <div className="flex h-56 items-end gap-1 sm:gap-1.5" role="img" aria-label={`Graphique de ${metrics.executions} exécutions sur les 30 derniers jours`}>
               {workspace.dailyExecutions.map((day, index) => <span key={day.date} title={`${day.count} exécution${day.count > 1 ? "s" : ""}`} className={`min-h-[3px] flex-1 rounded-t-md transition hover:opacity-75 ${index >= 27 ? "bg-[#5B5CF0]" : "bg-[#D9DAFF]"}`} style={{ height: `${Math.max((day.count / maxDaily) * 100, 2)}%` }} />)}
             </div>
-            <div className="mt-3 flex justify-between text-[11px] font-medium text-[#98A2B3]"><span>Il y a 30 jours</span><span>Aujourd’hui</span></div>
+            <div className="mt-3 flex justify-between text-xs font-medium text-[#98A2B3]"><span>Il y a 30 jours</span><span>Aujourd’hui</span></div>
           </div>
         </article>
 
@@ -76,7 +76,7 @@ export default async function WorkspaceHome() {
           {workspace.automations.length ? <div className="mt-5 space-y-3">{workspace.automations.slice(0, 3).map((automation) => (
             <Link key={automation.id} href="/espace/automatisations" className="group grid gap-4 rounded-2xl border border-[#EEF0F3] p-4 transition hover:border-[#D9DAFF] hover:bg-[#FAFAFF] sm:grid-cols-[1fr_auto_auto] sm:items-center">
               <div className="min-w-0"><p className="truncate text-sm font-semibold group-hover:text-[#5B5CF0]">{automation.name}</p><p className="mt-1 truncate text-xs text-[#8A94A6]">{automation.description}</p></div>
-              <div><p className="text-sm font-semibold">{numberFormatter.format(automation.runs)}</p><p className="text-[11px] text-[#98A2B3]">exécutions</p></div>
+              <div><p className="text-sm font-semibold">{numberFormatter.format(automation.runs)}</p><p className="text-xs text-[#98A2B3]">exécutions</p></div>
               <span className={`w-fit rounded-full px-2.5 py-1 text-xs font-semibold ${automation.status === "active" ? "bg-[#ECFDF3] text-[#079455]" : "bg-[#F2F4F7] text-[#667085]"}`}>{automation.status === "active" ? "Actif" : automation.status === "paused" ? "En pause" : "Brouillon"}</span>
             </Link>
           ))}</div> : <EmptyState icon="workflow" text="Aucune automatisation n’est encore rattachée à cet espace." href="/espace/automatisations/nouvelle" linkLabel="Composer la première" />}
@@ -85,13 +85,13 @@ export default async function WorkspaceHome() {
         <article className="rounded-[28px] border border-[#E1E4EA] bg-white p-5 sm:p-6">
           <div className="flex items-center justify-between gap-4"><div><h2 className="text-lg font-semibold">Activité récente</h2><p className="mt-1 text-sm text-[#8A94A6]">Les dernières actions réalisées</p></div><Link href="/espace/activite" className="text-sm font-semibold text-[#5B5CF0] hover:text-[#4546D9]">Journal</Link></div>
           {workspace.activities.length ? <div className="mt-5 space-y-4">{workspace.activities.slice(0, 4).map((activity) => (
-            <div key={activity.id} className="flex items-start gap-3"><span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl ${activity.status === "success" ? "bg-[#ECFDF3] text-[#079455]" : activity.status === "error" ? "bg-[#FEF3F2] text-[#D92D20]" : "bg-[#F0F0FF] text-[#5B5CF0]"}`}><Icon name={activity.status === "success" ? "check" : "activity"} className="h-4 w-4" /></span><div className="min-w-0 flex-1 border-b border-[#F0F1F4] pb-4 last:border-0"><div className="flex items-start justify-between gap-3"><p className="text-sm font-semibold">{activity.title}</p><time className="shrink-0 text-[11px] text-[#98A2B3]">{formatRelativeDate(activity.createdAt)}</time></div><p className="mt-1 truncate text-xs text-[#8A94A6]">{activity.description}</p></div></div>
+            <div key={activity.id} className="flex items-start gap-3"><span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl ${activity.status === "success" ? "bg-[#ECFDF3] text-[#079455]" : activity.status === "error" ? "bg-[#FEF3F2] text-[#D92D20]" : "bg-[#F0F0FF] text-[#5B5CF0]"}`}><Icon name={activity.status === "success" ? "check" : "activity"} className="h-4 w-4" /></span><div className="min-w-0 flex-1 border-b border-[#F0F1F4] pb-4 last:border-0"><div className="flex items-start justify-between gap-3"><p className="text-sm font-semibold">{activity.title}</p><time className="shrink-0 text-xs text-[#98A2B3]">{formatRelativeDate(activity.createdAt)}</time></div><p className="mt-1 truncate text-xs text-[#8A94A6]">{activity.description}</p></div></div>
           ))}</div> : <EmptyState icon="activity" text="L’activité de vos automatisations apparaîtra ici." />}
         </article>
       </section>
 
       <Link href="/espace/offre" className="group flex flex-col gap-4 rounded-[28px] border border-[#D9DAFF] bg-[linear-gradient(110deg,#F7F7FF,#FFFFFF)] p-5 transition hover:border-[#B8BAFF] hover:shadow-[0_16px_40px_rgba(91,92,240,0.08)] sm:flex-row sm:items-center sm:justify-between sm:p-6">
-        <div className="flex items-center gap-4"><span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-[#5B5CF0] shadow-sm"><Icon name="offer" className="h-5 w-5" /></span><div><p className="text-sm font-semibold">{workspace.offer ? workspace.offer.name : "Votre offre Kirevo"}</p><p className="mt-1 text-sm text-[#667085]">{workspace.offer ? `${workspace.modules.length} module${workspace.modules.length > 1 ? "s" : ""} dans votre solution` : "Composez une solution adaptée à votre besoin"}</p></div></div><span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#5B5CF0]">Consulter l’offre <Icon name="arrow" className="h-4 w-4 transition group-hover:translate-x-1" /></span>
+        <div className="flex items-center gap-4"><span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-[#5B5CF0] shadow-sm"><Icon name="offer" className="h-5 w-5" /></span><div><p className="text-sm font-semibold">{workspace.offer ? workspace.offer.name : "Votre offre Kirevo"}</p><p className="mt-1 text-sm text-[#667085]">{workspace.offer ? `${workspace.modules.length} module${workspace.modules.length > 1 ? "s" : ""} dans votre solution` : "Composez une solution adaptée à votre besoin"}</p></div></div><span className="inline-flex items-center text-sm font-semibold text-[#5B5CF0]">Consulter l’offre</span>
       </Link>
     </div>
   );

@@ -19,6 +19,7 @@ const standaloneRoutes = [
   "/connexion",
   "/creer-compte",
   "/mot-de-passe-oublie",
+  "/reinitialiser-mot-de-passe",
   "/espace",
 ];
 

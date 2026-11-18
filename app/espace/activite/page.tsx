@@ -22,7 +22,7 @@ export default async function ActivityPage() {
               return (
                 <li key={activity.id} className="grid gap-4 py-5 sm:grid-cols-[auto_1fr_auto] sm:items-center">
                   <span className={`flex h-11 w-11 items-center justify-center rounded-2xl ${appearance.tone}`}><Icon name={appearance.icon} className="h-4 w-4" /></span>
-                  <div className="min-w-0"><div className="flex flex-wrap items-center gap-2"><h2 className="text-sm font-semibold">{activity.title}</h2><span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${appearance.tone}`}>{appearance.label}</span></div><p className="mt-1 truncate text-sm text-[#667085]">{activity.description || "Action enregistrée dans votre espace."}</p></div>
+                  <div className="min-w-0"><div className="flex flex-wrap items-center gap-2"><h2 className="text-sm font-semibold">{activity.title}</h2><span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${appearance.tone}`}>{appearance.label}</span></div><p className="mt-1 truncate text-sm text-[#667085]">{activity.description || "Action enregistrée dans votre espace."}</p></div>
                   <time className="text-xs font-medium text-[#98A2B3]">{formatRelativeDate(activity.createdAt)}</time>
                 </li>
               );

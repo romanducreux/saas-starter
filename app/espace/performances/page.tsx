@@ -14,11 +14,9 @@ export default async function PerformancePage() {
     <div className="space-y-8">
       <PageHeader title="Performances" description="Mesurez l’impact réel de vos automatisations et repérez rapidement les points qui méritent votre attention." />
 
-      <div className="flex flex-col gap-3 rounded-[22px] border border-[#E1E4EA] bg-white p-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex gap-1 overflow-x-auto" aria-label="Période d’analyse">
-          {['7 jours', '30 jours', '3 mois', '12 mois'].map((period, index) => <button key={period} type="button" disabled={index !== 1} className={`whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-medium transition ${index === 1 ? 'bg-[#111111] text-white' : 'cursor-not-allowed text-[#98A2B3]'}`}>{period}</button>)}
-        </div>
-        <span className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-[#E1E4EA] px-4 py-2 text-sm font-medium text-[#475467]"><Icon name="calendar" className="h-4 w-4" /> 30 derniers jours</span>
+      <div className="flex flex-col gap-3 rounded-[22px] border border-[#E1E4EA] bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div><p className="text-sm font-semibold text-[#344054]">Période analysée</p><p className="mt-1 text-sm text-[#667085]">Les indicateurs couvrent les trente derniers jours.</p></div>
+        <span className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-[#E1E4EA] bg-[#F9FAFB] px-4 py-2 text-sm font-medium text-[#475467]"><Icon name="calendar" className="h-4 w-4" /> 30 derniers jours</span>
       </div>
 
       <section className="grid gap-4 md:grid-cols-3">
@@ -39,7 +37,7 @@ export default async function PerformancePage() {
         <div className="mt-8 flex h-72 items-end gap-1.5 rounded-2xl bg-[linear-gradient(to_bottom,#F0F1F4_1px,transparent_1px)] bg-[size:100%_25%] px-2 pt-4 sm:gap-2 sm:px-4" role="img" aria-label={`Graphique de ${metrics.executions} exécutions sur trente jours`}>
           {workspace.dailyExecutions.map((item, index) => <span key={item.date} title={`${item.count} exécution${item.count > 1 ? 's' : ''}`} className={`min-h-[3px] flex-1 rounded-t-md transition hover:opacity-75 ${index >= 27 ? 'bg-[#5B5CF0]' : 'bg-[#D9DAFF]'}`} style={{ height: `${Math.max(item.count / maxValue * 100, 1)}%` }} />)}
         </div>
-        <div className="mt-3 flex justify-between px-2 text-[11px] text-[#98A2B3]"><span>J-30</span><span>J-21</span><span>J-14</span><span>J-7</span><span>Aujourd’hui</span></div>
+        <div className="mt-3 flex justify-between px-2 text-xs text-[#98A2B3]"><span>J-30</span><span>J-21</span><span>J-14</span><span>J-7</span><span>Aujourd’hui</span></div>
       </section>
 
       <section className="grid gap-6 xl:grid-cols-[1.35fr_0.65fr]">

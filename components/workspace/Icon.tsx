@@ -17,6 +17,7 @@ export type IconName =
   | "form"
   | "help"
   | "integration"
+  | "logout"
   | "menu"
   | "more"
   | "offer"
@@ -109,6 +110,12 @@ export default function Icon({ name, ...props }: IconProps) {
       <>
         <path d="M8 3v4M16 3v4M5 7h14v4a7 7 0 0 1-14 0V7Z" />
         <path d="M12 18v3" />
+      </>
+    ),
+    logout: (
+      <>
+        <path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4" />
+        <path d="m15 16 4-4-4-4M19 12H9" />
       </>
     ),
     menu: <path d="M4 7h16M4 12h16M4 17h16" />,

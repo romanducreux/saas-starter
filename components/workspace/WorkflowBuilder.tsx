@@ -1,8 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState, type CSSProperties } from "react";
+import { useMemo, useState, useTransition, type CSSProperties } from "react";
 import Icon, { type IconName } from "@/components/workspace/Icon";
+import {
+  saveAutomationCompositionAction,
+  type SaveCompositionResult,
+} from "@/app/actions/workspace";
 
 type ModuleCategory = "Collecte" | "Communication" | "Intelligence" | "Pilotage";
 
@@ -141,6 +145,8 @@ function Brick({ module, index, onRemove }: { module: SolutionModule; index: num
         <span className="kirevo-brick-stud kirevo-brick-stud-two" />
         <span className="kirevo-brick-stud kirevo-brick-stud-three" />
         <span className="kirevo-brick-stud kirevo-brick-stud-four" />
+        <span className="kirevo-brick-gloss" aria-hidden="true" />
+        <span className="kirevo-brick-rail" aria-hidden="true" />
 
         <div className="relative z-10 flex min-w-0 flex-1 items-center gap-3 sm:gap-4">
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[13px] bg-white/16 text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.18)] backdrop-blur sm:h-11 sm:w-11">
@@ -149,15 +155,15 @@ function Brick({ module, index, onRemove }: { module: SolutionModule; index: num
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
               <p className="truncate text-sm font-semibold sm:text-base">{module.shortTitle}</p>
-              <span className="hidden rounded-full bg-black/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.12em] text-white/85 2xl:inline-flex">Brique {index + 1}</span>
+              <span className="hidden rounded-full bg-black/10 px-2 py-0.5 text-xs font-bold uppercase tracking-[0.12em] text-white/85 2xl:inline-flex">Brique {index + 1}</span>
             </div>
-            <p className="mt-1 truncate text-[11px] text-white/72 sm:text-xs">{module.description}</p>
+            <p className="mt-1 truncate text-xs text-white/75 sm:text-sm">{module.description}</p>
           </div>
         </div>
 
         <div className="relative z-10 hidden shrink-0 text-right sm:block">
           <p className="text-sm font-semibold">{formatPrice(module.setupPrice)}</p>
-          <p className="mt-0.5 text-[10px] text-white/68">+ {formatPrice(module.monthlyPrice)}/mois</p>
+          <p className="mt-0.5 text-xs text-white/70">+ {formatPrice(module.monthlyPrice)}/mois</p>
         </div>
 
         <button type="button" onClick={onRemove} className="relative z-20 ml-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-black/10 text-white/75 transition hover:bg-black/20 hover:text-white" aria-label={`Retirer la brique ${module.title}`}>
@@ -168,10 +174,12 @@ function Brick({ module, index, onRemove }: { module: SolutionModule; index: num
   );
 }
 
-export default function WorkflowBuilder() {
+export default function WorkflowBuilder({ live }: { live: boolean }) {
   const [selectedIds, setSelectedIds] = useState<string[]>(recommendedIds);
   const [activeCategory, setActiveCategory] = useState<"Toutes" | ModuleCategory>("Toutes");
-  const [saved, setSaved] = useState(false);
+  const [projectName, setProjectName] = useState("Ma solution Kirevo");
+  const [feedback, setFeedback] = useState<SaveCompositionResult>({ status: "idle", message: "" });
+  const [isPending, startTransition] = useTransition();
 
   const selectedModules = useMemo(
     () => selectedIds.map((id) => modules.find((item) => item.id === id)).filter(Boolean) as SolutionModule[],
@@ -185,13 +193,28 @@ export default function WorkflowBuilder() {
   const monthlyTotal = selectedModules.reduce((total, item) => total + item.monthlyPrice, 0);
 
   function toggleModule(id: string) {
-    setSaved(false);
+    setFeedback({ status: "idle", message: "" });
     setSelectedIds((current) => current.includes(id) ? current.filter((item) => item !== id) : [id, ...current]);
   }
 
   function saveConfiguration() {
-    setSaved(true);
-    window.setTimeout(() => setSaved(false), 2400);
+    if (!selectedModules.length) {
+      setFeedback({ status: "error", message: "Ajoutez au moins une brique à votre composition." });
+      return;
+    }
+
+    if (!live) {
+      setFeedback({ status: "success", message: "Composition prête : connectez votre compte pour l’enregistrer." });
+      return;
+    }
+
+    startTransition(async () => {
+      const result = await saveAutomationCompositionAction({
+        name: projectName,
+        moduleIds: selectedIds,
+      });
+      setFeedback(result);
+    });
   }
 
   return (
@@ -208,7 +231,7 @@ export default function WorkflowBuilder() {
 
             <div className="flex flex-wrap gap-2">
               <button type="button" onClick={() => setSelectedIds(recommendedIds)} className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-[#D7DAE2] bg-white px-4 py-2 text-sm font-semibold text-[#475467] transition hover:border-[#C9CBFF] hover:text-[#5B5CF0]"><Icon name="refresh" className="h-4 w-4" />Repartir du modèle</button>
-              <button type="button" onClick={saveConfiguration} className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl bg-[#111111] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#2B2B2B]"><Icon name="check" className="h-4 w-4" />Enregistrer l’aperçu</button>
+              <button type="button" onClick={saveConfiguration} disabled={isPending || !selectedModules.length} className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl bg-[#111111] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#2B2B2B] disabled:cursor-not-allowed disabled:opacity-45"><Icon name={isPending ? "refresh" : "check"} className={`h-4 w-4 ${isPending ? "animate-spin" : ""}`} />{isPending ? "Enregistrement…" : live ? "Enregistrer le brouillon" : "Préparer le récapitulatif"}</button>
             </div>
           </div>
         </div>
@@ -223,13 +246,13 @@ export default function WorkflowBuilder() {
         </div>
       </section>
 
-      {saved ? <div role="status" className="fixed bottom-5 right-5 z-50 flex items-center gap-2 rounded-2xl bg-[#111827] px-4 py-3 text-sm font-medium text-white shadow-2xl"><Icon name="check" className="h-4 w-4 text-[#A7F3D0]" />Configuration enregistrée dans l’aperçu</div> : null}
+      {feedback.status !== "idle" ? <div role={feedback.status === "error" ? "alert" : "status"} className={`fixed bottom-5 right-5 z-50 flex max-w-[calc(100vw-2.5rem)] items-center gap-2 rounded-2xl px-4 py-3 text-sm font-medium text-white shadow-2xl ${feedback.status === "error" ? "bg-[#B42318]" : "bg-[#111827]"}`}><Icon name={feedback.status === "error" ? "close" : "check"} className={`h-4 w-4 ${feedback.status === "error" ? "text-white" : "text-[#A7F3D0]"}`} />{feedback.message}</div> : null}
 
-      <div className="grid gap-5 xl:grid-cols-[260px_minmax(380px,1fr)_290px]">
+      <div className="grid gap-5 xl:grid-cols-[240px_minmax(0,1fr)] 2xl:grid-cols-[260px_minmax(500px,1fr)_290px]">
         <aside className="min-w-0 self-start rounded-[26px] border border-[#E1E4EA] bg-white p-4 shadow-[0_8px_26px_rgba(17,24,39,0.035)] xl:sticky xl:top-[92px]">
           <div className="flex items-center justify-between gap-3">
             <div><p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#5B5CF0]">Catalogue</p><h2 className="mt-1 text-lg font-semibold">Vos briques</h2></div>
-            <span className="rounded-full bg-[#F2F4F7] px-2.5 py-1 text-[11px] font-semibold text-[#667085]">{selectedIds.length} choisie{selectedIds.length > 1 ? "s" : ""}</span>
+            <span className="rounded-full bg-[#F2F4F7] px-2.5 py-1 text-xs font-semibold text-[#667085]">{selectedIds.length} choisie{selectedIds.length > 1 ? "s" : ""}</span>
           </div>
 
           <div className="mt-4 flex gap-1 overflow-x-auto pb-1 xl:flex-col" aria-label="Filtrer les briques">
@@ -247,10 +270,10 @@ export default function WorkflowBuilder() {
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl" style={{ backgroundColor: module.colors.soft, color: module.colors.main }}><Icon name={module.icon} className="h-4 w-4" /></span>
                     <span className="min-w-0 flex-1">
                       <span className="flex items-center justify-between gap-2"><span className="truncate text-sm font-semibold group-hover:text-[#5B5CF0]">{module.shortTitle}</span><span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border ${selected ? "border-[#5B5CF0] bg-[#5B5CF0] text-white" : "border-[#D7DAE2] text-transparent"}`}><Icon name="check" className="h-3 w-3" /></span></span>
-                      <span className="mt-1 block text-[10px] leading-4 text-[#98A2B3]">{module.description}</span>
+                      <span className="mt-1 block text-xs leading-5 text-[#7C8497]">{module.description}</span>
                     </span>
                   </div>
-                  <div className="mt-3 flex items-center justify-between border-t border-black/[0.05] pt-2 text-[10px] font-semibold"><span className="text-[#475467]">{formatPrice(module.setupPrice)} installation</span><span className="text-[#5B5CF0]">{formatPrice(module.monthlyPrice)}/mois</span></div>
+                  <div className="mt-3 grid gap-1 border-t border-black/[0.05] pt-2 text-xs font-semibold"><span className="text-[#475467]">{formatPrice(module.setupPrice)} installation</span><span className="text-[#5B5CF0]">{formatPrice(module.monthlyPrice)}/mois</span></div>
                 </button>
               );
             })}
@@ -261,12 +284,14 @@ export default function WorkflowBuilder() {
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(91,92,240,0.11),transparent_42%)]" />
           <div className="relative flex items-start justify-between gap-4">
             <div><p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#5B5CF0]">Aperçu 3D</p><h2 className="mt-1 text-lg font-semibold">Votre solution Kirevo</h2><p className="mt-1 text-xs text-[#8A94A6]">Chaque clic ajoute une capacité à votre pile.</p></div>
-            <span className="rounded-full border border-[#E1E4EA] bg-white/85 px-3 py-1.5 text-[11px] font-semibold text-[#667085] shadow-sm backdrop-blur">{selectedModules.length} module{selectedModules.length > 1 ? "s" : ""}</span>
+            <span className="rounded-full border border-[#E1E4EA] bg-white/85 px-3 py-1.5 text-xs font-semibold text-[#667085] shadow-sm backdrop-blur">{selectedModules.length} module{selectedModules.length > 1 ? "s" : ""}</span>
           </div>
 
-          <div className="relative z-10 flex min-h-[565px] items-center justify-center px-1 pb-12 pt-14 sm:px-5">
+          <div className="kirevo-brick-scene relative z-10 flex min-h-[565px] items-center justify-center px-1 pb-12 pt-14 sm:px-5">
+            <span className="kirevo-brick-orbit" aria-hidden="true" />
+            <span className="kirevo-brick-floor" aria-hidden="true" />
             {selectedModules.length ? (
-              <div className="w-full max-w-[620px]" aria-live="polite">
+              <div className="relative z-10 w-full max-w-[620px]" aria-live="polite">
                 <ol className="kirevo-brick-stack">{selectedModules.map((module, index) => <Brick key={module.id} module={module} index={index} onRemove={() => toggleModule(module.id)} />)}</ol>
                 <div className="kirevo-brick-platform" aria-hidden="true"><span>KIREVO</span></div>
               </div>
@@ -276,24 +301,27 @@ export default function WorkflowBuilder() {
           </div>
         </section>
 
-        <aside className="min-w-0 self-start rounded-[26px] border border-[#E1E4EA] bg-white p-5 shadow-[0_12px_34px_rgba(17,24,39,0.055)] xl:sticky xl:top-[92px]">
+        <aside id="resume-projet" className="min-w-0 self-start rounded-[26px] border border-[#E1E4EA] bg-white p-5 shadow-[0_12px_34px_rgba(17,24,39,0.055)] xl:col-span-2 2xl:sticky 2xl:top-[92px] 2xl:col-span-1">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#5B5CF0]">Votre estimation</p>
           <h2 className="mt-1 text-lg font-semibold">Résumé du projet</h2>
+          <label className="mt-5 block text-sm font-medium text-[#344054]">Nom de la composition
+            <input value={projectName} onChange={(event) => setProjectName(event.target.value)} maxLength={160} className="mt-2 h-11 w-full rounded-xl border border-[#D7DAE2] bg-white px-3.5 text-sm outline-none transition focus:border-[#8B8CFF] focus:ring-4 focus:ring-[#5B5CF0]/10" />
+          </label>
           <div className="mt-5 space-y-3">
             {selectedModules.length ? selectedModules.map((module) => (
-              <div key={module.id} className="flex items-start gap-3 rounded-2xl bg-[#F8F9FB] p-3"><span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl" style={{ backgroundColor: module.colors.soft, color: module.colors.main }}><Icon name={module.icon} className="h-4 w-4" /></span><div className="min-w-0 flex-1"><p className="truncate text-xs font-semibold">{module.shortTitle}</p><p className="mt-1 text-[10px] text-[#8A94A6]">{formatPrice(module.setupPrice)} + {formatPrice(module.monthlyPrice)}/mois</p></div></div>
+              <div key={module.id} className="flex items-start gap-3 rounded-2xl bg-[#F8F9FB] p-3"><span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl" style={{ backgroundColor: module.colors.soft, color: module.colors.main }}><Icon name={module.icon} className="h-4 w-4" /></span><div className="min-w-0 flex-1"><p className="truncate text-sm font-semibold">{module.shortTitle}</p><p className="mt-1 text-xs text-[#7C8497]">{formatPrice(module.setupPrice)} + {formatPrice(module.monthlyPrice)}/mois</p></div></div>
             )) : <p className="rounded-2xl bg-[#F8F9FB] p-4 text-xs leading-5 text-[#8A94A6]">Aucune brique sélectionnée pour le moment.</p>}
           </div>
 
           <div className="my-5 border-t border-[#EEF0F3]" />
           <div className="space-y-4">
-            <div className="flex items-end justify-between gap-3"><div><p className="text-xs font-medium text-[#667085]">Mise en place</p><p className="mt-1 text-[10px] text-[#98A2B3]">Paiement initial estimé</p></div><strong className="text-xl tracking-[-0.03em]">{formatPrice(setupTotal)}</strong></div>
-            <div className="flex items-end justify-between gap-3 rounded-2xl bg-[#F0F0FF] p-4"><div><p className="text-xs font-semibold text-[#5B5CF0]">Suivi mensuel</p><p className="mt-1 text-[10px] text-[#7778D9]">Maintenance et supervision</p></div><div className="text-right"><strong className="text-2xl tracking-[-0.04em] text-[#4F46E5]">{formatPrice(monthlyTotal)}</strong><p className="text-[10px] font-semibold text-[#7778D9]">par mois</p></div></div>
+            <div className="flex items-end justify-between gap-3"><div><p className="text-sm font-medium text-[#667085]">Mise en place</p><p className="mt-1 text-xs text-[#8A94A6]">Paiement initial estimé</p></div><strong className="text-xl tracking-[-0.03em]">{formatPrice(setupTotal)}</strong></div>
+            <div className="flex items-end justify-between gap-3 rounded-2xl bg-[#F0F0FF] p-4"><div><p className="text-sm font-semibold text-[#5B5CF0]">Suivi mensuel</p><p className="mt-1 text-xs text-[#7778D9]">Maintenance et supervision</p></div><div className="text-right"><strong className="text-2xl tracking-[-0.04em] text-[#4F46E5]">{formatPrice(monthlyTotal)}</strong><p className="text-xs font-semibold text-[#7778D9]">par mois</p></div></div>
           </div>
 
-          <div className="mt-5 rounded-2xl border border-[#F0DBB5] bg-[#FFFBF3] p-3.5 text-[10px] leading-4 text-[#8A6116]"><strong>Estimation indicative HT.</strong> Le périmètre, les outils tiers et le prix final sont confirmés après l’échange de cadrage.</div>
-          <Link href="/demo" className="mt-5 flex min-h-11 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#5B5CF0] to-[#7C3AED] px-4 py-3 text-center text-sm font-semibold text-white shadow-[0_12px_28px_rgba(91,92,240,0.24)] transition hover:-translate-y-0.5 hover:shadow-[0_16px_34px_rgba(91,92,240,0.32)]">Faire valider mon projet<Icon name="arrow" className="h-4 w-4" /></Link>
-          <p className="mt-3 text-center text-[10px] leading-4 text-[#98A2B3]">Aucune commande ni facturation automatique.</p>
+          <div className="mt-5 rounded-2xl border border-[#F0DBB5] bg-[#FFFBF3] p-3.5 text-xs leading-5 text-[#8A6116]"><strong>Estimation indicative HT.</strong> Le périmètre, les outils tiers et le prix final sont confirmés après l’échange de cadrage.</div>
+          <Link href="/demo" className="mt-5 flex min-h-11 items-center justify-center rounded-2xl bg-gradient-to-r from-[#5B5CF0] to-[#7C3AED] px-4 py-3 text-center text-sm font-semibold text-white shadow-[0_12px_28px_rgba(91,92,240,0.24)] transition hover:-translate-y-0.5 hover:shadow-[0_16px_34px_rgba(91,92,240,0.32)]">Faire valider mon projet</Link>
+          <p className="mt-3 text-center text-xs leading-5 text-[#8A94A6]">Aucune commande ni facturation automatique.</p>
         </aside>
       </div>
     </div>

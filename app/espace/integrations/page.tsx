@@ -16,14 +16,15 @@ const catalog = [
 export default async function IntegrationsPage() {
   const workspace = await getWorkspaceData();
   const connectionMap = new Map(workspace.integrations.map((integration) => [integration.provider, integration.status]));
+  const connectedCount = workspace.integrations.filter((integration) => integration.status === "connected").length;
 
   return (
     <div className="space-y-8">
       <PageHeader title="Connexions" description="Visualisez les outils reliés à votre solution. Les connexions sont configurées et sécurisées avec Kirevo." />
 
-      <div className="flex flex-col gap-3 rounded-[22px] border border-[#E1E4EA] bg-white p-3 sm:flex-row sm:items-center sm:justify-between">
-        <label className="flex min-h-10 items-center gap-2 rounded-xl bg-[#F7F8FA] px-3.5 text-sm text-[#98A2B3] sm:w-72"><span className="sr-only">Rechercher une connexion</span><Icon name="search" className="h-4 w-4" /><input type="search" placeholder="Rechercher un outil" className="min-w-0 flex-1 border-0 bg-transparent py-2 outline-none" /></label>
-        <div className="flex gap-1 overflow-x-auto">{['Tous', 'Données', 'E-mail', 'CRM', 'Équipe'].map((category, index) => <span key={category} className={`whitespace-nowrap rounded-xl px-3.5 py-2 text-xs font-semibold ${index === 0 ? 'bg-[#111111] text-white' : 'text-[#667085]'}`}>{category}</span>)}</div>
+      <div className="flex flex-col gap-4 rounded-[22px] border border-[#E1E4EA] bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div><p className="text-sm font-semibold text-[#344054]">Catalogue de connexions</p><p className="mt-1 text-sm text-[#667085]">Chaque accès est configuré uniquement avec votre validation.</p></div>
+        <span className="inline-flex w-fit items-center gap-2 rounded-xl bg-[#ECFDF3] px-3.5 py-2 text-sm font-semibold text-[#079455]"><Icon name="check" className="h-4 w-4" />{connectedCount} connexion{connectedCount > 1 ? "s" : ""} active{connectedCount > 1 ? "s" : ""}</span>
       </div>
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -32,9 +33,15 @@ export default async function IntegrationsPage() {
           const status = storedStatus === "connected" ? "Connecté" : storedStatus === "attention" ? "À vérifier" : integration.available ? "Disponible" : "Bientôt";
           return (
             <article key={integration.name} className="rounded-[24px] border border-[#E1E4EA] bg-white p-5 transition hover:-translate-y-0.5 hover:border-[#C9CBFF] hover:shadow-[0_14px_34px_rgba(17,24,39,0.07)]">
-              <div className="flex items-start justify-between gap-4"><span className={`flex h-12 w-12 items-center justify-center rounded-2xl text-sm font-bold ${integration.color}`}>{integration.initials}</span><span className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${status === 'Connecté' ? 'bg-[#ECFDF3] text-[#079455]' : status === 'À vérifier' ? 'bg-[#FFF4E8] text-[#B54708]' : status === 'Bientôt' ? 'bg-[#F2F4F7] text-[#8A94A6]' : 'bg-[#F0F0FF] text-[#5B5CF0]'}`}>{status}</span></div>
-              <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#98A2B3]">{integration.category}</p><h2 className="mt-1 text-base font-semibold">{integration.name}</h2><p className="mt-2 min-h-12 text-sm leading-6 text-[#667085]">{integration.description}</p>
-              <button type="button" disabled className="mt-5 inline-flex min-h-10 w-full cursor-not-allowed items-center justify-center gap-2 rounded-xl border border-[#E1E4EA] bg-[#F9FAFB] px-4 py-2 text-sm font-semibold text-[#667085] disabled:opacity-70"><Icon name={status === 'Connecté' ? 'check' : 'help'} className="h-4 w-4" />{status === 'Connecté' ? 'Connexion opérationnelle' : status === 'À vérifier' ? 'Contacter Kirevo' : status === 'Bientôt' ? 'Prochainement' : 'Disponible sur demande'}</button>
+              <div className="flex items-start justify-between gap-4"><span className={`flex h-12 w-12 items-center justify-center rounded-2xl text-sm font-bold ${integration.color}`}>{integration.initials}</span><span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${status === 'Connecté' ? 'bg-[#ECFDF3] text-[#079455]' : status === 'À vérifier' ? 'bg-[#FFF4E8] text-[#B54708]' : status === 'Bientôt' ? 'bg-[#F2F4F7] text-[#8A94A6]' : 'bg-[#F0F0FF] text-[#5B5CF0]'}`}>{status}</span></div>
+              <p className="mt-5 text-xs font-semibold uppercase tracking-[0.12em] text-[#98A2B3]">{integration.category}</p><h2 className="mt-1 text-base font-semibold">{integration.name}</h2><p className="mt-2 min-h-12 text-sm leading-6 text-[#667085]">{integration.description}</p>
+              {status === "Connecté" ? (
+                <span className="mt-5 inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-xl border border-[#D1FADF] bg-[#F6FEF9] px-4 py-2 text-sm font-semibold text-[#079455]"><Icon name="check" className="h-4 w-4" />Connexion opérationnelle</span>
+              ) : status === "Bientôt" ? (
+                <span className="mt-5 inline-flex min-h-10 w-full items-center justify-center rounded-xl border border-[#E1E4EA] bg-[#F9FAFB] px-4 py-2 text-sm font-semibold text-[#8A94A6]">Prochainement</span>
+              ) : (
+                <a href={`mailto:contact@kirevo.fr?subject=${encodeURIComponent(`Connexion ${integration.name}`)}`} className="mt-5 inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-xl border border-[#D9DAFF] bg-[#F8F8FF] px-4 py-2 text-sm font-semibold text-[#5B5CF0] transition hover:border-[#BFC0FF] hover:bg-[#F0F0FF]"><Icon name="help" className="h-4 w-4" />{status === "À vérifier" ? "Contacter Kirevo" : "Demander cette connexion"}</a>
+              )}
             </article>
           );
         })}

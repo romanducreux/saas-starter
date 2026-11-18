@@ -133,7 +133,7 @@ export default function AppShell({ children, identity, mode }: AppShellProps) {
             {mode === "live" ? (
               <form action={signOutAction}>
                 <button type="submit" aria-label="Se déconnecter" title="Se déconnecter" className="flex h-8 w-8 items-center justify-center rounded-xl text-[#98A2B3] transition hover:bg-white hover:text-[#5B5CF0] focus:outline-none focus:ring-2 focus:ring-[#5B5CF0]/20">
-                  <Icon name="arrow" className="h-4 w-4" />
+                  <Icon name="logout" className="h-4 w-4" />
                 </button>
               </form>
             ) : <Icon name="more" className="h-5 w-5 text-[#98A2B3]" />}
@@ -163,24 +163,27 @@ export default function AppShell({ children, identity, mode }: AppShellProps) {
               </Link>
             </div>
 
-            <div className="hidden max-w-sm flex-1 items-center gap-2 rounded-2xl border border-[#E1E4EA] bg-[#F9FAFB] px-3.5 py-2.5 text-sm text-[#98A2B3] md:flex lg:ml-0">
-              <Icon name="search" className="h-4 w-4" />
-              <span>Rechercher dans votre espace</span>
-              <span className="ml-auto rounded-lg border border-[#E1E4EA] bg-white px-2 py-0.5 text-[11px] text-[#8A94A6]">⌘ K</span>
+            <div className="hidden max-w-sm flex-1 items-center gap-3 rounded-2xl border border-[#E1E4EA] bg-[#F9FAFB] px-3.5 py-2.5 md:flex lg:ml-0">
+              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white text-[#5B5CF0] shadow-sm">
+                <Icon name="offer" className="h-4 w-4" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-xs font-medium text-[#98A2B3]">Espace de travail</span>
+                <span className="block truncate text-sm font-semibold text-[#344054]">{identity.organizationName}</span>
+              </span>
             </div>
 
             <div className="ml-auto flex items-center gap-2">
               <span className="hidden rounded-full border border-[#D9DAFF] bg-[#F2F2FF] px-3 py-1.5 text-xs font-semibold text-[#5B5CF0] sm:inline-flex">
                 {mode === "preview" ? "Aperçu produit" : "Espace sécurisé"}
               </span>
-              <button
-                type="button"
+              <Link
+                href="/espace/activite"
                 className="relative flex h-10 w-10 items-center justify-center rounded-2xl border border-[#E1E4EA] bg-white text-[#667085] transition hover:border-[#C9CBFF] hover:text-[#5B5CF0]"
-                aria-label="Notifications"
+                aria-label="Consulter l’activité"
               >
                 <Icon name="bell" className="h-[18px] w-[18px]" />
-                <span className="absolute right-2 top-2 h-2 w-2 rounded-full border-2 border-white bg-[#5B5CF0]" />
-              </button>
+              </Link>
               <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-[#5B5CF0] to-[#8B5CF6] text-xs font-semibold text-white sm:hidden">
                 {identity.initials}
               </span>

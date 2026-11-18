@@ -256,7 +256,7 @@ export default function FonctionnalitesPage() {
                         key={item}
                         className="flex items-center gap-3 text-[15px] text-[#334155]"
                       >
-                        <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EEF0FF] text-[11px] font-bold text-[#5B5CF0]">
+                        <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EEF0FF] text-xs font-bold text-[#5B5CF0]">
                           ✓
                         </span>
                         {item}
@@ -441,10 +441,7 @@ export default function FonctionnalitesPage() {
                 </p>
 
                 <div className="mt-7 text-sm font-semibold text-[#5B5CF0]">
-                  Découvrir{" "}
-                  <span className="inline-block transition group-hover:translate-x-1">
-                    →
-                  </span>
+                  Découvrir
                 </div>
               </Link>
             ))}

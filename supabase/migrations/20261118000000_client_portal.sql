@@ -71,9 +71,11 @@ create index offer_modules_offer_id_idx on public.offer_modules(offer_id);
 create table public.automations (
   id uuid primary key default gen_random_uuid(),
   organization_id uuid not null references public.organizations(id) on delete cascade,
+  created_by uuid references auth.users(id) on delete set null,
   name text not null check (char_length(name) between 2 and 160),
   description text,
   status text not null default 'draft' check (status in ('draft', 'active', 'paused')),
+  configuration jsonb not null default '{}'::jsonb,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );

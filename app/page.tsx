@@ -430,7 +430,6 @@ export default function Home() {
                 className="inline-flex items-center gap-2 font-semibold text-[#5B5CF0] transition hover:gap-3"
               >
                 Découvrir l’accompagnement sur mesure
-                <span>→</span>
               </Link>
             </div>
           </div>

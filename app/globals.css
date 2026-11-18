@@ -121,22 +121,71 @@ section {
 @keyframes brick-arrive {
   from {
     opacity: 0;
-    transform: translate3d(0, -28px, 0) scale(0.96);
+    transform: translate3d(0, -34px, 0) rotateX(-5deg) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
+    transform: translate3d(0, 0, 0) rotateX(0) scale(1);
   }
+}
+
+.kirevo-brick-scene {
+  isolation: isolate;
+  perspective: 1600px;
+}
+
+.kirevo-brick-scene::before {
+  position: absolute;
+  z-index: -2;
+  width: min(620px, 94%);
+  height: min(620px, 78%);
+  border: 1px solid rgba(91, 92, 240, 0.1);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.92) 0 20%, transparent 64%),
+    radial-gradient(circle, rgba(91, 92, 240, 0.13), rgba(124, 58, 237, 0.025) 56%, transparent 72%);
+  box-shadow:
+    0 0 0 34px rgba(91, 92, 240, 0.025),
+    0 0 0 68px rgba(91, 92, 240, 0.018);
+  content: "";
+}
+
+.kirevo-brick-orbit {
+  position: absolute;
+  z-index: -1;
+  width: min(680px, 96%);
+  height: 180px;
+  border: 1px solid rgba(91, 92, 240, 0.14);
+  border-radius: 50%;
+  transform: rotate(-7deg);
+  box-shadow: inset 0 0 50px rgba(91, 92, 240, 0.045);
+}
+
+.kirevo-brick-floor {
+  position: absolute;
+  z-index: -1;
+  right: 3%;
+  bottom: 2%;
+  left: 3%;
+  height: 42%;
+  background-image:
+    linear-gradient(rgba(91, 92, 240, 0.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91, 92, 240, 0.075) 1px, transparent 1px);
+  background-size: 38px 28px;
+  mask-image: linear-gradient(to bottom, transparent, black 32%, transparent 96%);
+  transform: perspective(520px) rotateX(64deg) translateY(24%);
+  transform-origin: center bottom;
 }
 
 .kirevo-brick-stack {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 25px;
   margin: 0;
-  padding: 0 20px 14px 0;
+  padding: 0 23px 17px 0;
   list-style: none;
-  perspective: 1200px;
+  perspective: 1600px;
+  transform-style: preserve-3d;
 }
 
 .kirevo-brick-wrap {
@@ -144,6 +193,8 @@ section {
   z-index: 1;
   margin-left: var(--brick-offset);
   color: var(--brick-ink);
+  filter: drop-shadow(0 18px 20px rgba(17, 24, 39, 0.1));
+  transform-style: preserve-3d;
   animation: brick-arrive 0.46s cubic-bezier(0.22, 1, 0.36, 1) both;
   animation-delay: var(--brick-delay);
 }
@@ -151,30 +202,43 @@ section {
 .kirevo-brick {
   position: relative;
   display: flex;
-  min-height: 88px;
+  min-height: 92px;
   align-items: center;
   gap: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.26);
-  border-radius: 16px 5px 7px 16px;
-  background: linear-gradient(110deg, rgba(255, 255, 255, 0.13), transparent 35%), var(--brick-main);
-  padding: 16px 16px 14px;
-  box-shadow: 0 18px 28px rgba(17, 24, 39, 0.13), inset 0 -5px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.24);
-  transform: rotateX(1.5deg);
+  overflow: visible;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 18px 6px 8px 18px;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(255, 255, 255, 0.28), transparent 32%),
+    linear-gradient(118deg, rgba(255, 255, 255, 0.16), transparent 42%),
+    var(--brick-main);
+  padding: 17px 18px 15px;
+  box-shadow:
+    0 24px 38px rgba(17, 24, 39, 0.14),
+    0 7px 13px rgba(17, 24, 39, 0.08),
+    inset 0 -6px 0 rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
+  transform: rotateX(2deg) rotateY(-0.6deg);
   transform-origin: center bottom;
+  transform-style: preserve-3d;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .kirevo-brick::before {
   position: absolute;
   z-index: -1;
-  top: -17px;
-  right: -16px;
-  left: 8px;
-  height: 19px;
+  top: -20px;
+  right: -18px;
+  left: 9px;
+  height: 22px;
   border-radius: 10px 8px 2px 2px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.16), transparent 54%), var(--brick-top);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
-  clip-path: polygon(12px 0, 100% 0, calc(100% - 16px) 100%, 0 100%);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.3), transparent 54%),
+    var(--brick-top);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.48),
+    0 -1px 0 rgba(255, 255, 255, 0.12);
+  clip-path: polygon(13px 0, 100% 0, calc(100% - 18px) 100%, 0 100%);
   content: "";
 }
 
@@ -182,26 +246,40 @@ section {
   position: absolute;
   z-index: -2;
   top: -2px;
-  right: -16px;
-  bottom: 5px;
-  width: 17px;
+  right: -18px;
+  bottom: 6px;
+  width: 19px;
   border-radius: 0 6px 7px 0;
-  background: var(--brick-side);
-  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.12);
-  clip-path: polygon(0 17px, 100% 0, 100% calc(100% - 8px), 0 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent 38%), var(--brick-side);
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.18),
+    4px 7px 11px rgba(17, 24, 39, 0.12);
+  clip-path: polygon(0 20px, 100% 0, 100% calc(100% - 9px), 0 100%);
   content: "";
 }
 
 .kirevo-brick-stud {
   position: absolute;
   z-index: 2;
-  top: -23px;
-  width: 24px;
-  height: 10px;
+  top: -27px;
+  width: 27px;
+  height: 12px;
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 50%;
-  background: var(--brick-top);
-  box-shadow: inset 0 2px 1px rgba(255, 255, 255, 0.23), 0 4px 4px rgba(17, 24, 39, 0.12);
+  background: radial-gradient(circle at 35% 20%, rgba(255, 255, 255, 0.42), transparent 35%), var(--brick-top);
+  box-shadow:
+    inset 0 2px 1px rgba(255, 255, 255, 0.32),
+    inset 0 -2px 2px rgba(0, 0, 0, 0.08),
+    0 5px 6px rgba(17, 24, 39, 0.14);
+}
+
+.kirevo-brick-stud::after {
+  position: absolute;
+  inset: 2px 5px auto;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.42);
+  content: "";
 }
 
 .kirevo-brick-stud-one { left: 13%; }
@@ -209,20 +287,51 @@ section {
 .kirevo-brick-stud-three { left: 58%; }
 .kirevo-brick-stud-four { left: 80%; }
 
+.kirevo-brick-gloss {
+  position: absolute;
+  z-index: 1;
+  inset: 1px 22% auto 18px;
+  height: 1px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.75), transparent);
+  opacity: 0.58;
+  pointer-events: none;
+}
+
+.kirevo-brick-rail {
+  position: absolute;
+  z-index: 1;
+  right: 7%;
+  bottom: -8px;
+  left: 7%;
+  height: 8px;
+  border-radius: 0 0 8px 8px;
+  background: color-mix(in srgb, var(--brick-side) 86%, black);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.13);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
 .kirevo-brick-platform {
   position: relative;
   display: flex;
-  height: 28px;
+  height: 34px;
   align-items: center;
   justify-content: center;
-  margin: 0 10px 0 24px;
+  margin: 2px 10px 0 24px;
   border-radius: 50%;
-  background: linear-gradient(180deg, #cfd3dd, #aeb4c2);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.65), transparent 48%),
+    linear-gradient(180deg, #dfe3ec, #aeb4c2);
   color: rgba(17, 24, 39, 0.35);
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.28em;
-  box-shadow: 0 20px 35px rgba(17, 24, 39, 0.18), inset 0 5px 9px rgba(255, 255, 255, 0.6), inset 0 -5px 8px rgba(17, 24, 39, 0.14);
+  box-shadow:
+    0 22px 40px rgba(17, 24, 39, 0.2),
+    inset 0 6px 10px rgba(255, 255, 255, 0.72),
+    inset 0 -6px 9px rgba(17, 24, 39, 0.16);
 }
 
 .kirevo-brick-platform::after {
@@ -239,8 +348,12 @@ section {
 
 @media (hover: hover) {
   .kirevo-brick:hover {
-    transform: translateY(-3px) rotateX(1.5deg);
-    box-shadow: 0 23px 36px rgba(17, 24, 39, 0.18), inset 0 -5px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+    transform: translateY(-5px) rotateX(2.5deg) rotateY(-0.6deg);
+    box-shadow:
+      0 29px 46px rgba(17, 24, 39, 0.2),
+      0 8px 15px rgba(17, 24, 39, 0.09),
+      inset 0 -6px 0 rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.34);
   }
 }
 
@@ -256,8 +369,19 @@ section {
   }
 
   .kirevo-brick-stud {
-    width: 19px;
-    height: 8px;
+    top: -24px;
+    width: 21px;
+    height: 9px;
+  }
+
+  .kirevo-brick-scene::before {
+    width: 92%;
+    height: 62%;
+  }
+
+  .kirevo-brick-orbit {
+    width: 96%;
+    height: 120px;
   }
 }
 

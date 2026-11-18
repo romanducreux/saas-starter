@@ -10,6 +10,7 @@ const standaloneRoutes = [
   "/connexion",
   "/creer-compte",
   "/mot-de-passe-oublie",
+  "/reinitialiser-mot-de-passe",
   "/espace",
 ];
 
@@ -121,7 +122,6 @@ export default function Footer() {
               className="inline-flex items-center gap-2 rounded-md font-semibold text-[#5B5CF0] hover:text-[#4546D9]"
             >
               Réserver un appel
-              <span aria-hidden="true">↗</span>
             </a>
           </div>
         </nav>

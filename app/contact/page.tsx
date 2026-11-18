@@ -43,9 +43,6 @@ export default function ContactPage() {
             </p>
             <span className="mt-6 inline-flex items-center gap-2 font-semibold text-[#5B5CF0]">
               contact@kirevo.fr
-              <span aria-hidden="true" className="transition group-hover:translate-x-1">
-                →
-              </span>
             </span>
           </a>
 
@@ -67,7 +64,6 @@ export default function ContactPage() {
             </p>
             <span className="mt-6 inline-flex items-center gap-2 font-semibold text-[#5B5CF0]">
               Voir les disponibilités
-              <span aria-hidden="true">↗</span>
             </span>
           </a>
         </div>

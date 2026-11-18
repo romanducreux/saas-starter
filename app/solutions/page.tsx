@@ -83,7 +83,6 @@ export default function SolutionsPage() {
 
               <span className="mt-8 inline-flex items-center gap-2 font-semibold text-[#5B5CF0]">
                 Découvrir la solution
-                <span className="transition group-hover:translate-x-1">→</span>
               </span>
             </Link>
           ))}

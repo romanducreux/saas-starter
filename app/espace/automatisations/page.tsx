@@ -24,7 +24,7 @@ export default async function AutomationsPage() {
           <div className="flex gap-1 overflow-x-auto rounded-2xl bg-[#F7F8FA] p-1" aria-label="Résumé des automatisations">
             {[`Toutes ${workspace.automations.length}`, `Actives ${active}`, `Brouillons ${drafts}`].map((label, index) => <span key={label} className={`whitespace-nowrap rounded-xl px-4 py-2 text-sm font-medium ${index === 0 ? 'bg-white text-[#111111] shadow-sm' : 'text-[#667085]'}`}>{label}</span>)}
           </div>
-          <label className="flex min-h-10 items-center gap-2 rounded-2xl border border-[#E1E4EA] bg-white px-3.5 text-sm text-[#98A2B3] sm:w-64"><span className="sr-only">Rechercher une automatisation</span><Icon name="search" className="h-4 w-4" /><input type="search" placeholder="Rechercher" className="min-w-0 flex-1 border-0 bg-transparent py-2 outline-none" /></label>
+          <span className="inline-flex items-center gap-2 text-sm text-[#667085]"><Icon name="workflow" className="h-4 w-4 text-[#5B5CF0]" />{active} parcours actif{active > 1 ? "s" : ""}</span>
         </div>
 
         {workspace.automations.length ? (

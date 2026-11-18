@@ -227,7 +227,6 @@ export default function CasClientsPage() {
                       className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#5B5CF0] to-[#7C7DFF] px-6 py-4 font-semibold text-white shadow-xl shadow-[#5B5CF0]/20 transition duration-300 hover:scale-105"
                     >
                       Voir la démonstration
-                      <span>→</span>
                     </Link>
 
                     <Link
